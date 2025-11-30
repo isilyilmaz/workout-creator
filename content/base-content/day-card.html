@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="./css/day-card.css">
+<div class="day-column" data-day="{{day}}">
+    <div class="day-header">
+        <h3>{{dayName}}</h3>
+    </div>
+    <div class="exercise-cards" id="{{day}}-exercises">
+        <!-- Exercise cards will be populated dynamically -->
+    </div>
+    <div class="day-actions">
+        <button class="add-exercise-btn" data-day="{{day}}" data-action="add-exercise">+ Exercise</button>
+        <button class="add-rest-btn" data-day="{{day}}" data-action="add-rest">+ Rest</button>
+    </div>
+</div>

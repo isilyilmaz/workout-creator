@@ -1,0 +1,37 @@
+{
+    "users": {
+        "adminuser1": {
+            "username": "Admin",
+            "namesurname": "Admin",
+            "email": "admin@gmail.com",
+            "password": "adm1234",
+            "isAdmin": "1",
+            "subscriptionstartdate":"20250601",
+            "subscriptionenddate":"21250601",
+            "renewalfee":"0",
+            "freetrial":"0"
+        },
+        "user1001": {
+            "username": "user1001",
+            "namesurname": "Yunus Keskin",
+            "email": "yunus.keskin.55@hotmail.com",
+            "password": "YunusK1234",
+            "isAdmin": "0",
+            "subscriptionstartdate":"20250601",
+            "subscriptionenddate":"202501221",
+            "renewalfee":"20",
+            "freetrial":"0"
+        },
+        "user1002": {
+            "username": "user1002",
+            "namesurname": "Isil Keskin",
+            "email": "isl.ylmz94@gmail.com",
+            "password": "IsilK1234",
+            "isAdmin": "0",
+            "subscriptionstartdate":"20250601",
+            "subscriptionenddate":"20260601",
+            "renewalfee":"12",
+            "freetrial":"0"
+        }
+    }
+}

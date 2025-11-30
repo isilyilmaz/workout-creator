@@ -1,0 +1,270 @@
+<link rel="stylesheet" href="./css/components/workout-summary.css">
+<div class="workout-summary-content">
+    <!-- Summary Header -->
+    <div class="summary-header">
+        <h1>Workout Summary</h1>
+        <div class="summary-meta">
+            <div class="workout-name">isil-workout</div>
+            <button class="btn btn-secondary save-pdf-btn">
+                <span>📄</span>
+                Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Summary Content -->
+    <div class="summary-main">
+        <!-- Daily Schedule -->
+        <div class="daily-schedule" id="daily-schedule-container">
+            <!-- Monday -->
+            <div class="day-summary" data-day="monday">
+                <div class="day-header">
+                    <h2>MONDAY</h2>
+                    <div class="calories-badge">
+                        <span class="fire-icon">🔥</span>
+                        <span class="calories" id="monday-calories">45-78 kcal</span>
+                    </div>
+                </div>
+
+                <div class="targeted-muscles-section">
+                    <h3>Targeted Muscles:</h3>
+                    <div class="muscle-tags" id="monday-muscles">
+                        <span class="muscle-tag">Back</span>
+                        <span class="muscle-tag">Core</span>
+                        <span class="muscle-tag">Biceps</span>
+                    </div>
+                </div>
+
+                <div class="exercise-list" id="monday-exercises">
+                    <div class="exercise-item">
+                        <span class="exercise-name">Deadlift</span>
+                        <span class="exercise-details">• 4 sets × 6 reps • 80% • 15-25 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Pull-ups</span>
+                        <span class="exercise-details">• 4 sets × max reps • 70% • 12-20 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Barbell Row</span>
+                        <span class="exercise-details">• 3 sets × 8 reps • 80% • 10-18 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Lat Pulldown</span>
+                        <span class="exercise-details">• 3 sets × 12 reps • 70% • 8-15 kcal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tuesday -->
+            <div class="day-summary" data-day="tuesday">
+                <div class="day-header">
+                    <h2>TUESDAY</h2>
+                    <div class="calories-badge">
+                        <span class="fire-icon">🔥</span>
+                        <span class="calories" id="tuesday-calories">65-95 kcal</span>
+                    </div>
+                </div>
+
+                <div class="targeted-muscles-section">
+                    <h3>Targeted Muscles:</h3>
+                    <div class="muscle-tags" id="tuesday-muscles">
+                        <span class="muscle-tag">Chest</span>
+                        <span class="muscle-tag">Shoulders</span>
+                        <span class="muscle-tag">Triceps</span>
+                    </div>
+                </div>
+
+                <div class="exercise-list" id="tuesday-exercises">
+                    <div class="exercise-item">
+                        <span class="exercise-name">Bench Press</span>
+                        <span class="exercise-details">• 4 sets × 8 reps • 80% • 20-30 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Incline Dumbbell Press</span>
+                        <span class="exercise-details">• 3 sets × 12 reps • 70% • 15-25 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Triceps Pushdown</span>
+                        <span class="exercise-details">• 3 sets × 12 reps • 70% • 10-15 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Dips</span>
+                        <span class="exercise-details">• 3 sets × max reps • 20-25 kcal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wednesday -->
+            <div class="day-summary" data-day="wednesday">
+                <div class="day-header">
+                    <h2>WEDNESDAY</h2>
+                    <div class="calories-badge rest-day">
+                        <span class="rest-icon">😴</span>
+                        <span class="calories">Rest Day</span>
+                    </div>
+                </div>
+
+                <div class="rest-day-content">
+                    <div class="rest-message">
+                        <span class="rest-emoji">🛌</span>
+                        <h3>Recovery Day</h3>
+                        <p>Take time to rest and allow your muscles to recover. Consider light stretching or walking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thursday -->
+            <div class="day-summary" data-day="thursday">
+                <div class="day-header">
+                    <h2>THURSDAY</h2>
+                    <div class="calories-badge">
+                        <span class="fire-icon">🔥</span>
+                        <span class="calories" id="thursday-calories">50-85 kcal</span>
+                    </div>
+                </div>
+
+                <div class="targeted-muscles-section">
+                    <h3>Targeted Muscles:</h3>
+                    <div class="muscle-tags" id="thursday-muscles">
+                        <span class="muscle-tag">Back</span>
+                        <span class="muscle-tag">Biceps</span>
+                        <span class="muscle-tag">Core</span>
+                    </div>
+                </div>
+
+                <div class="exercise-list" id="thursday-exercises">
+                    <div class="exercise-item">
+                        <span class="exercise-name">Deadlift</span>
+                        <span class="exercise-details">• 4 sets × 6 reps • 80% • 15-25 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Pull-ups</span>
+                        <span class="exercise-details">• 4 sets × max reps • 70% • 12-20 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Barbell Row</span>
+                        <span class="exercise-details">• 3 sets × 8 reps • 80% • 10-18 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Barbell Curl</span>
+                        <span class="exercise-details">• 3 sets × 12 reps • 70% • 13-22 kcal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Friday -->
+            <div class="day-summary" data-day="friday">
+                <div class="day-header">
+                    <h2>FRIDAY</h2>
+                    <div class="calories-badge rest-day">
+                        <span class="rest-icon">😴</span>
+                        <span class="calories">Rest Day</span>
+                    </div>
+                </div>
+
+                <div class="rest-day-content">
+                    <div class="rest-message">
+                        <span class="rest-emoji">🛌</span>
+                        <h3>Recovery Day</h3>
+                        <p>Take time to rest and allow your muscles to recover. Consider light stretching or walking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saturday -->
+            <div class="day-summary" data-day="saturday">
+                <div class="day-header">
+                    <h2>SATURDAY</h2>
+                    <div class="calories-badge rest-day">
+                        <span class="rest-icon">😴</span>
+                        <span class="calories">Rest Day</span>
+                    </div>
+                </div>
+
+                <div class="rest-day-content">
+                    <div class="rest-message">
+                        <span class="rest-emoji">🛌</span>
+                        <h3>Recovery Day</h3>
+                        <p>Take time to rest and allow your muscles to recover. Consider light stretching or walking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sunday -->
+            <div class="day-summary" data-day="sunday">
+                <div class="day-header">
+                    <h2>SUNDAY</h2>
+                    <div class="calories-badge">
+                        <span class="fire-icon">🔥</span>
+                        <span class="calories" id="sunday-calories">70-110 kcal</span>
+                    </div>
+                </div>
+
+                <div class="targeted-muscles-section">
+                    <h3>Targeted Muscles:</h3>
+                    <div class="muscle-tags" id="sunday-muscles">
+                        <span class="muscle-tag">Chest</span>
+                        <span class="muscle-tag">Shoulders</span>
+                        <span class="muscle-tag">Triceps</span>
+                    </div>
+                </div>
+
+                <div class="exercise-list" id="sunday-exercises">
+                    <div class="exercise-item">
+                        <span class="exercise-name">Bench Press</span>
+                        <span class="exercise-details">• 4 sets × 8 reps • 80% • 20-30 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Overhead Press</span>
+                        <span class="exercise-details">• 3 sets × 10 reps • 70% • 18-25 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Lateral Raise</span>
+                        <span class="exercise-details">• 4 sets × 15 reps • 60% • 16-25 kcal</span>
+                    </div>
+                    <div class="exercise-item">
+                        <span class="exercise-name">Triceps Pushdown</span>
+                        <span class="exercise-details">• 3 sets × 12 reps • 70% • 16-30 kcal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Targeted Muscles Visualization -->
+        <div class="muscle-visualization">
+            <h2>Targeted Muscles</h2>
+            <div class="body-views">
+                <div class="body-view">
+                    <h3>FRONT VIEW</h3>
+                    <div class="body-diagram front-view">
+                        <div class="muscle-group chest highlighted"></div>
+                        <div class="muscle-group shoulders highlighted"></div>
+                        <div class="muscle-group triceps highlighted"></div>
+                        <div class="muscle-group core highlighted"></div>
+                        <!-- SVG or image representation of front body view -->
+                        <div class="body-silhouette">
+                            <span class="body-icon">🧍</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-view">
+                    <h3>BACK VIEW</h3>
+                    <div class="body-diagram back-view">
+                        <!-- SVG or image representation of back body view -->
+                        <div class="body-silhouette">
+                            <span class="body-icon">🙎‍♂️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="summary-actions">
+        <button class="btn btn-secondary back-to-home-btn" data-action="back-to-home">
+            <span>←</span>
+            Back to Workout
+        </button>
+    </div>
+</div>

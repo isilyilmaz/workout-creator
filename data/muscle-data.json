@@ -1,0 +1,152 @@
+{
+    "muscleGroups": {
+        "chest": {
+            "name": "Chest",
+            "description": "Pectoral muscles for pushing movements",
+            "icon": "💪",
+            "category": "upper_body",
+            "detailedMuscles": ["chest"],
+            "primaryColor": "#e74c3c",
+            "bodyPart": "torso"
+        },
+        "shoulders": {
+            "name": "Shoulders",
+            "description": "Deltoids and rotator cuffs for arm movement",
+            "icon": "🤷",
+            "category": "upper_body",
+            "detailedMuscles": ["shoulders", "rear_delts"],
+            "primaryColor": "#f39c12",
+            "bodyPart": "arms"
+        },
+        "biceps": {
+            "name": "Biceps",
+            "description": "Front arm muscles for pulling movements",
+            "icon": "💪",
+            "category": "upper_body",
+            "detailedMuscles": ["biceps", "forearms"],
+            "primaryColor": "#3498db",
+            "bodyPart": "arms"
+        },
+        "triceps": {
+            "name": "Triceps",
+            "description": "Back arm muscles for pushing movements",
+            "icon": "🦾",
+            "category": "upper_body",
+            "detailedMuscles": ["triceps"],
+            "primaryColor": "#9b59b6",
+            "bodyPart": "arms"
+        },
+        "back": {
+            "name": "Back",
+            "description": "Latissimus dorsi and rhomboids for pulling",
+            "icon": "🏋️",
+            "category": "upper_body",
+            "detailedMuscles": ["back", "upper_back"],
+            "primaryColor": "#2ecc71",
+            "bodyPart": "torso"
+        },
+        "core": {
+            "name": "Core",
+            "description": "Abdominals and obliques for stability",
+            "icon": "⚡",
+            "category": "core",
+            "detailedMuscles": ["core", "obliques"],
+            "primaryColor": "#e67e22",
+            "bodyPart": "torso"
+        },
+        "quadriceps": {
+            "name": "Quadriceps",
+            "description": "Front thigh muscles for knee extension",
+            "icon": "🦵",
+            "category": "lower_body",
+            "detailedMuscles": ["quadriceps"],
+            "primaryColor": "#1abc9c",
+            "bodyPart": "legs"
+        },
+        "hamstrings": {
+            "name": "Hamstrings",
+            "description": "Back thigh muscles for knee flexion",
+            "icon": "🦵",
+            "category": "lower_body",
+            "detailedMuscles": ["hamstrings"],
+            "primaryColor": "#34495e",
+            "bodyPart": "legs"
+        },
+        "glutes": {
+            "name": "Glutes",
+            "description": "Buttock muscles for hip extension",
+            "icon": "🍑",
+            "category": "lower_body",
+            "detailedMuscles": ["glutes"],
+            "primaryColor": "#8e44ad",
+            "bodyPart": "legs"
+        },
+        "calves": {
+            "name": "Calves",
+            "description": "Lower leg muscles for ankle movement",
+            "icon": "🦵",
+            "category": "lower_body",
+            "detailedMuscles": ["calves"],
+            "primaryColor": "#95a5a6",
+            "bodyPart": "legs"
+        }
+    },
+    "specialCategories": {
+        "full_body": {
+            "name": "Full Body",
+            "description": "Exercises targeting multiple muscle groups",
+            "icon": "🏃",
+            "category": "compound",
+            "detailedMuscles": ["full_body"],
+            "primaryColor": "#c0392b"
+        },
+        "cardio": {
+            "name": "Cardio",
+            "description": "Cardiovascular and endurance training",
+            "icon": "❤️",
+            "category": "cardiovascular",
+            "detailedMuscles": ["cardio"],
+            "primaryColor": "#e74c3c"
+        }
+    },
+    "categories": {
+        "upper_body": {
+            "name": "Upper Body",
+            "description": "Arms, chest, shoulders, and back muscles"
+        },
+        "lower_body": {
+            "name": "Lower Body", 
+            "description": "Legs, glutes, and hip muscles"
+        },
+        "core": {
+            "name": "Core",
+            "description": "Abdominal and stabilizing muscles"
+        },
+        "compound": {
+            "name": "Compound",
+            "description": "Multi-muscle group exercises"
+        },
+        "cardiovascular": {
+            "name": "Cardiovascular",
+            "description": "Heart and endurance training"
+        }
+    },
+    "detailedMuscles": {
+        "chest": { "displayName": "Chest", "primaryGroup": "chest" },
+        "shoulders": { "displayName": "Shoulders", "primaryGroup": "shoulders" },
+        "rear_delts": { "displayName": "Rear Delts", "primaryGroup": "shoulders" },
+        "biceps": { "displayName": "Biceps", "primaryGroup": "biceps" },
+        "forearms": { "displayName": "Forearms", "primaryGroup": "biceps" },
+        "triceps": { "displayName": "Triceps", "primaryGroup": "triceps" },
+        "back": { "displayName": "Back", "primaryGroup": "back" },
+        "upper_back": { "displayName": "Upper Back", "primaryGroup": "back" },
+        "core": { "displayName": "Core", "primaryGroup": "core" },
+        "obliques": { "displayName": "Obliques", "primaryGroup": "core" },
+        "quadriceps": { "displayName": "Quadriceps", "primaryGroup": "quadriceps" },
+        "hamstrings": { "displayName": "Hamstrings", "primaryGroup": "hamstrings" },
+        "glutes": { "displayName": "Glutes", "primaryGroup": "glutes" },
+        "calves": { "displayName": "Calves", "primaryGroup": "calves" },
+        "full_body": { "displayName": "Full Body", "primaryGroup": "full_body" },
+        "cardio": { "displayName": "Cardio", "primaryGroup": "cardio" }
+    }
+}

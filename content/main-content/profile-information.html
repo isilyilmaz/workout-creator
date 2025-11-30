@@ -1,0 +1,159 @@
+<div class="profile-content">
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <div class="avatar-circle" id="profile-avatar">
+                    <span id="avatar-initials">U</span>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1 id="profile-name">User Name</h1>
+                <p id="profile-email">user@example.com</p>
+                <span class="user-badge" id="user-role">User</span>
+            </div>
+        </div>
+
+        <div class="profile-sections">
+            <!-- Personal Information Section -->
+            <div class="profile-section">
+                <h2>Personal Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <div class="info-value" id="display-name">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Username</label>
+                        <div class="info-value" id="display-username">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Email Address</label>
+                        <div class="info-value" id="display-email">Loading...</div>
+                    </div>
+                    <div class="info-item">
+                        <label>Account Type</label>
+                        <div class="info-value" id="display-role">Loading...</div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" id="edit-profile-btn">
+                    Edit Profile
+                </button>
+            </div>
+
+            <!-- Subscription Information Section -->
+            <div class="profile-section">
+                <h2>Subscription Information</h2>
+                <div class="subscription-card" id="subscription-card">
+                    <div class="subscription-status">
+                        <span class="status-indicator" id="subscription-status"></span>
+                        <span class="status-text" id="subscription-text">Loading...</span>
+                    </div>
+                    <div class="subscription-details">
+                        <div class="detail-item">
+                            <label>Start Date</label>
+                            <span id="subscription-start">Loading...</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>End Date</label>
+                            <span id="subscription-end">Loading...</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Renewal Fee</label>
+                            <span id="renewal-fee">Loading...</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Free Trial</label>
+                            <span id="free-trial-status">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Statistics Section -->
+            <div class="profile-section">
+                <h2>Workout Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-workouts">0</div>
+                        <div class="stat-label">Total Workouts</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="workout-time">0h</div>
+                        <div class="stat-label">Total Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="calories-burned">0</div>
+                        <div class="stat-label">Calories Burned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="favorite-muscle">-</div>
+                        <div class="stat-label">Favorite Muscle Group</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Section (only visible for admin users) -->
+            <div class="profile-section admin-section" id="admin-section" style="display: none;">
+                <h2>Admin Controls</h2>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" data-action="manage-users">
+                        Manage Users
+                    </button>
+                    <button class="btn btn-primary" data-action="view-analytics">
+                        View Analytics
+                    </button>
+                    <button class="btn btn-primary" data-action="system-settings">
+                        System Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Account Actions Section -->
+            <div class="profile-section">
+                <h2>Account Actions</h2>
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" data-action="change-password">
+                        Change Password
+                    </button>
+                    <button class="btn btn-secondary" data-action="export-data">
+                        Export Data
+                    </button>
+                    <button class="btn btn-secondary" data-action="privacy-settings">
+                        Privacy Settings
+                    </button>
+                    <button class="btn btn-danger logout-btn" id="logout-btn">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="edit-profile-modal" id="edit-profile-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="modal-close" id="close-edit-modal">&times;</button>
+            </div>
+            <form class="edit-profile-form" id="edit-profile-form">
+                <div class="form-group">
+                    <label for="edit-name" class="form-label">Full Name</label>
+                    <input type="text" id="edit-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email" class="form-label">Email Address</label>
+                    <input type="email" id="edit-email" class="form-input" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-edit-btn">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

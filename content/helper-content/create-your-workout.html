@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="./css/create-your-workout.css">
+<div class="create-workout-container">
+    <!-- Workout Header -->
+    <div class="workout-header">
+        <div class="workout-name-section">
+            <input 
+                type="text" 
+                id="workout-name-input" 
+                class="workout-name-input" 
+                placeholder="Give your workout a name"
+                value="My Custom Workout"
+            >
+        </div>
+        <div class="workout-actions">
+            <input type="file" id="workout-file-input" accept=".json" style="display: none;">
+            <button class="load-workout-btn" data-action="load-workout">Load Workout</button>
+            <button class="save-workout-btn" data-action="save-workout">Save Workout</button>
+        </div>
+    </div>
+
+    <!-- Weekly Schedule -->
+    <div class="weekly-schedule">
+        <h2 class="schedule-title">Weekly Schedule</h2>
+        
+        <div class="weekly-grid">
+            <!-- Monday -->
+            {{include-template:day-card.html|day:monday|dayName:Monday}}
+
+            <!-- Tuesday -->
+            {{include-template:day-card.html|day:tuesday|dayName:Tuesday}}
+
+            <!-- Wednesday -->
+            {{include-template:day-card.html|day:wednesday|dayName:Wednesday}}
+
+            <!-- Thursday -->
+            {{include-template:day-card.html|day:thursday|dayName:Thursday}}
+
+            <!-- Friday -->
+            {{include-template:day-card.html|day:friday|dayName:Friday}}
+
+            <!-- Saturday -->
+            {{include-template:day-card.html|day:saturday|dayName:Saturday}}
+
+            <!-- Sunday -->
+            {{include-template:day-card.html|day:sunday|dayName:Sunday}}
+        </div>
+    </div>
+
+    <!-- Simple Exercise Modal -->
+    <div class="modal-overlay" id="simple-exercise-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Exercise</h3>
+                <button class="modal-close" data-action="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Exercise Name</label>
+                    <select id="exercise-name-select" class="form-input">
+                        <option value="">Select Exercise</option>
+                        <option value="Deadlift">Deadlift</option>
+                        <option value="Bench Press">Bench Press</option>
+                        <option value="Squat">Squat</option>
+                        <option value="Pull-ups">Pull-ups</option>
+                        <option value="Overhead Press">Overhead Press</option>
+                        <option value="Barbell Row">Barbell Row</option>
+                        <option value="Incline Dumbbell Press">Incline Dumbbell Press</option>
+                        <option value="Triceps Pushdown">Triceps Pushdown</option>
+                        <option value="Barbell Curl">Barbell Curl</option>
+                        <option value="Lateral Raise">Lateral Raise</option>
+                        <option value="Dips">Dips</option>
+                        <option value="Lat Pulldown">Lat Pulldown</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Sets</label>
+                        <input type="number" id="sets-input" class="form-input" min="1" max="10" value="3">
+                    </div>
+                    <div class="form-group">
+                        <label>Reps</label>
+                        <input type="number" id="reps-input" class="form-input" min="1" max="50" value="12">
+                    </div>
+                    <div class="form-group">
+                        <label>Intensity (%)</label>
+                        <input type="number" id="intensity-input" class="form-input" min="0" max="100" value="75">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" data-action="close-modal">Cancel</button>
+                <button class="btn-primary" data-action="confirm-add-exercise">Add Exercise</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple Rest Modal -->
+    <div class="modal-overlay" id="simple-rest-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Rest Period</h3>
+                <button class="modal-close" data-action="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Duration (minutes)</label>
+                    <input type="number" id="rest-duration-input" class="form-input" min="1" max="60" value="5">
+                </div>
+                <div class="form-group">
+                    <label>Rest Type</label>
+                    <select id="rest-type-select" class="form-input">
+                        <option value="active">Active Rest</option>
+                        <option value="passive">Passive Rest</option>
+                        <option value="complete">Complete Rest</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" data-action="close-modal">Cancel</button>
+                <button class="btn-primary" data-action="confirm-add-rest">Add Rest</button>
+            </div>
+        </div>
+    </div>
+</div>

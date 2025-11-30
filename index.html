@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Program Creator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <h1>Workout Program Creator</h1>
+                </div>
+                <nav class="navigation">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active" data-page="home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-page="workout-creator">Workout Creator</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-page="workout-creator-assistant">Workout  Assistant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-page="exercise-library">Exercise Library</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-page="help">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-page="about">About</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="language-selector">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="tr">TR</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="content">
+            <div class="content-container" id="main-content">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Workout Creator</h3>
+                        <p>Build your perfect fitness routine with our comprehensive workout planning tools.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#" data-page="home">Home</a></li>
+                            <li><a href="#" data-page="workout-creator">Create Workout</a></li>
+                            <li><a href="#" data-page="workout-creator-assistant">Create Workout Assistant</a></li>
+                            <li><a href="#" data-page="exercise-library">Exercise Library</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="#" data-page="bmi-calculator">BMI Calculator</a></li>
+                            <li><a href="#" data-page="calorie-tracker">Calorie Tracker</a></li>
+                            <li><a href="#" data-page="progress-tracker">Progress Tracker</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Workout Program Creator. Powered by Visual Studio Code 3</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="modal-container hidden"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

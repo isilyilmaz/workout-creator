@@ -1,0 +1,26 @@
+<div class="home-content">
+    <!-- Hero Section -->
+    {{include:hero.html}}
+
+    <!-- Create Your Workout Interface -->
+    <section class="workout-creator-section">
+        {{include:create-your-workout.html}}
+    </section>
+
+    <!-- Feature Section -->
+    {{include:feature-workout-creator.html}}
+
+    <!-- Workout Summary Button Section -->
+    <section class="workout-summary-section" style="margin-top: 40px;">
+        <div class="summary-button-container">
+            <button class="btn btn-primary workout-summary-btn" data-action="show-workout-summary">
+                <span class="summary-icon">📊</span>
+                <span class="summary-text">
+                    <strong>View Workout Summary</strong>
+                    <small>See detailed breakdown of your current workout plan</small>
+                </span>
+                <span class="summary-arrow">→</span>
+            </button>
+        </div>
+    </section>
+</div>

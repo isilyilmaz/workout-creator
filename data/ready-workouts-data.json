@@ -1,0 +1,365 @@
+{
+    "workouts": [
+        {
+            "id": "beginner-full-body",
+            "name": "Beginner Full Body Workout",
+            "description": "A complete full-body workout perfect for beginners starting their fitness journey",
+            "category": "beginner",
+            "duration": "45-60 minutes",
+            "difficulty": 3,
+            "targetMuscles": ["chest", "back", "shoulders", "quadriceps", "glutes", "core"],
+            "equipment": ["bodyweight", "dumbbell"],
+            "exercises": [
+                {
+                    "name": "Push-ups",
+                    "sets": 3,
+                    "reps": "8-12",
+                    "rest": "60s",
+                    "notes": "Modify on knees if needed"
+                },
+                {
+                    "name": "Goblet Squat",
+                    "sets": 3,
+                    "reps": "10-15",
+                    "rest": "60s",
+                    "notes": "Use light dumbbell"
+                },
+                {
+                    "name": "Dumbbell Rows",
+                    "sets": 3,
+                    "reps": "8-12",
+                    "rest": "60s",
+                    "notes": "Each arm"
+                },
+                {
+                    "name": "Shoulder Press",
+                    "sets": 3,
+                    "reps": "8-12",
+                    "rest": "60s",
+                    "notes": "Seated or standing"
+                },
+                {
+                    "name": "Plank",
+                    "sets": 3,
+                    "reps": "20-30s",
+                    "rest": "45s",
+                    "notes": "Hold position"
+                }
+            ],
+            "frequency": "3 times per week",
+            "tags": ["beginner", "full-body", "strength"]
+        },
+        {
+            "id": "intermediate-upper-lower",
+            "name": "Intermediate Upper/Lower Split",
+            "description": "4-day split focusing on upper and lower body alternately",
+            "category": "intermediate",
+            "duration": "60-75 minutes",
+            "difficulty": 6,
+            "targetMuscles": ["chest", "back", "shoulders", "biceps", "triceps", "quadriceps", "hamstrings", "glutes"],
+            "equipment": ["barbell", "dumbbell", "cable"],
+            "exercises": [
+                {
+                    "name": "Bench Press",
+                    "sets": 4,
+                    "reps": "6-8",
+                    "rest": "90s",
+                    "notes": "Upper body day"
+                },
+                {
+                    "name": "Barbell Row",
+                    "sets": 4,
+                    "reps": "6-8",
+                    "rest": "90s",
+                    "notes": "Upper body day"
+                },
+                {
+                    "name": "Shoulder Press",
+                    "sets": 3,
+                    "reps": "8-10",
+                    "rest": "75s",
+                    "notes": "Upper body day"
+                },
+                {
+                    "name": "Squat",
+                    "sets": 4,
+                    "reps": "6-8",
+                    "rest": "2-3min",
+                    "notes": "Lower body day"
+                },
+                {
+                    "name": "Romanian Deadlift",
+                    "sets": 3,
+                    "reps": "8-10",
+                    "rest": "90s",
+                    "notes": "Lower body day"
+                },
+                {
+                    "name": "Lunges",
+                    "sets": 3,
+                    "reps": "10-12",
+                    "rest": "60s",
+                    "notes": "Each leg"
+                }
+            ],
+            "frequency": "4 times per week",
+            "tags": ["intermediate", "split", "strength", "hypertrophy"]
+        },
+        {
+            "id": "hiit-cardio-blast",
+            "name": "HIIT Cardio Blast",
+            "description": "High-intensity interval training for fat burning and cardiovascular fitness",
+            "category": "cardio",
+            "duration": "20-30 minutes",
+            "difficulty": 7,
+            "targetMuscles": ["cardio", "full_body", "core"],
+            "equipment": ["noEquipment"],
+            "exercises": [
+                {
+                    "name": "Burpees",
+                    "sets": 4,
+                    "reps": "30s work",
+                    "rest": "30s",
+                    "notes": "High intensity"
+                },
+                {
+                    "name": "Mountain Climbers",
+                    "sets": 4,
+                    "reps": "30s work",
+                    "rest": "30s",
+                    "notes": "Fast pace"
+                },
+                {
+                    "name": "Jumping Jacks",
+                    "sets": 4,
+                    "reps": "30s work",
+                    "rest": "30s",
+                    "notes": "Continuous movement"
+                },
+                {
+                    "name": "Push-ups",
+                    "sets": 4,
+                    "reps": "30s work",
+                    "rest": "30s",
+                    "notes": "As many as possible"
+                },
+                {
+                    "name": "Plank",
+                    "sets": 4,
+                    "reps": "30s work",
+                    "rest": "30s",
+                    "notes": "Hold position"
+                }
+            ],
+            "frequency": "3-4 times per week",
+            "tags": ["hiit", "cardio", "fat-loss", "bodyweight"]
+        },
+        {
+            "id": "strength-power-5x5",
+            "name": "5x5 Strength Program",
+            "description": "Classic 5x5 program for building raw strength with compound movements",
+            "category": "strength",
+            "duration": "60-90 minutes",
+            "difficulty": 8,
+            "targetMuscles": ["chest", "back", "shoulders", "quadriceps", "hamstrings", "glutes"],
+            "equipment": ["barbell"],
+            "exercises": [
+                {
+                    "name": "Squat",
+                    "sets": 5,
+                    "reps": "5",
+                    "rest": "3-5min",
+                    "notes": "Progressive overload"
+                },
+                {
+                    "name": "Bench Press",
+                    "sets": 5,
+                    "reps": "5",
+                    "rest": "3-5min",
+                    "notes": "Workout A"
+                },
+                {
+                    "name": "Barbell Row",
+                    "sets": 5,
+                    "reps": "5",
+                    "rest": "3-5min",
+                    "notes": "Workout A"
+                },
+                {
+                    "name": "Overhead Press",
+                    "sets": 5,
+                    "reps": "5",
+                    "rest": "3-5min",
+                    "notes": "Workout B"
+                },
+                {
+                    "name": "Deadlifts",
+                    "sets": 1,
+                    "reps": "5",
+                    "rest": "5min",
+                    "notes": "Workout B only"
+                }
+            ],
+            "frequency": "3 times per week, alternating A/B",
+            "tags": ["strength", "powerlifting", "compound", "beginner-intermediate"]
+        },
+        {
+            "id": "mobility-flexibility",
+            "name": "Daily Mobility & Flexibility",
+            "description": "Comprehensive stretching routine to improve flexibility and reduce muscle tension",
+            "category": "flexibility",
+            "duration": "15-25 minutes",
+            "difficulty": 2,
+            "targetMuscles": ["chest", "shoulders", "back", "quadriceps", "hamstrings", "calves"],
+            "equipment": ["stretching"],
+            "exercises": [
+                {
+                    "name": "Chest Stretch",
+                    "sets": 2,
+                    "reps": "30s hold",
+                    "rest": "15s",
+                    "notes": "Against wall or doorway"
+                },
+                {
+                    "name": "Shoulder Stretch",
+                    "sets": 2,
+                    "reps": "30s hold",
+                    "rest": "15s",
+                    "notes": "Each arm"
+                },
+                {
+                    "name": "Hamstring Stretch",
+                    "sets": 2,
+                    "reps": "30s hold",
+                    "rest": "15s",
+                    "notes": "Each leg"
+                },
+                {
+                    "name": "Quad Stretch",
+                    "sets": 2,
+                    "reps": "30s hold",
+                    "rest": "15s",
+                    "notes": "Each leg"
+                },
+                {
+                    "name": "Triceps Stretch",
+                    "sets": 2,
+                    "reps": "30s hold",
+                    "rest": "15s",
+                    "notes": "Each arm"
+                }
+            ],
+            "frequency": "Daily or post-workout",
+            "tags": ["flexibility", "mobility", "recovery", "stretching"]
+        },
+        {
+            "id": "advanced-push-pull-legs",
+            "name": "Advanced Push/Pull/Legs",
+            "description": "High-volume 6-day split for advanced trainees focusing on hypertrophy",
+            "category": "advanced",
+            "duration": "75-90 minutes",
+            "difficulty": 9,
+            "targetMuscles": ["chest", "shoulders", "triceps", "back", "biceps", "quadriceps", "hamstrings", "glutes", "calves"],
+            "equipment": ["barbell", "dumbbell", "cable", "machine"],
+            "exercises": [
+                {
+                    "name": "Bench Press",
+                    "sets": 4,
+                    "reps": "6-8",
+                    "rest": "2-3min",
+                    "notes": "Push day - chest focus"
+                },
+                {
+                    "name": "Shoulder Press",
+                    "sets": 4,
+                    "reps": "8-10",
+                    "rest": "90s",
+                    "notes": "Push day"
+                },
+                {
+                    "name": "Triceps Pushdown",
+                    "sets": 4,
+                    "reps": "10-12",
+                    "rest": "60s",
+                    "notes": "Push day"
+                },
+                {
+                    "name": "Deadlifts",
+                    "sets": 4,
+                    "reps": "5-6",
+                    "rest": "3-4min",
+                    "notes": "Pull day - back focus"
+                },
+                {
+                    "name": "Pull-Up",
+                    "sets": 4,
+                    "reps": "8-12",
+                    "rest": "90s",
+                    "notes": "Pull day"
+                },
+                {
+                    "name": "Dumbbell Curl",
+                    "sets": 4,
+                    "reps": "10-12",
+                    "rest": "60s",
+                    "notes": "Pull day"
+                },
+                {
+                    "name": "Squat",
+                    "sets": 4,
+                    "reps": "6-8",
+                    "rest": "3min",
+                    "notes": "Leg day"
+                },
+                {
+                    "name": "Romanian Deadlift",
+                    "sets": 4,
+                    "reps": "8-10",
+                    "rest": "90s",
+                    "notes": "Leg day"
+                },
+                {
+                    "name": "Calf Raise",
+                    "sets": 4,
+                    "reps": "15-20",
+                    "rest": "45s",
+                    "notes": "Leg day"
+                }
+            ],
+            "frequency": "6 times per week (Push/Pull/Legs x2)",
+            "tags": ["advanced", "hypertrophy", "high-volume", "bodybuilding"]
+        }
+    ],
+    "categories": {
+        "beginner": {
+            "name": "Beginner",
+            "description": "Perfect for those new to fitness",
+            "difficultyRange": [1, 4]
+        },
+        "intermediate": {
+            "name": "Intermediate", 
+            "description": "For those with 6+ months of training experience",
+            "difficultyRange": [4, 7]
+        },
+        "advanced": {
+            "name": "Advanced",
+            "description": "High-intensity programs for experienced athletes",
+            "difficultyRange": [7, 10]
+        },
+        "strength": {
+            "name": "Strength",
+            "description": "Focus on building maximum strength",
+            "difficultyRange": [5, 10]
+        },
+        "cardio": {
+            "name": "Cardio",
+            "description": "Cardiovascular fitness and fat loss",
+            "difficultyRange": [3, 8]
+        },
+        "flexibility": {
+            "name": "Flexibility",
+            "description": "Improve mobility and reduce tension",
+            "difficultyRange": [1, 3]
+        }
+    }
+}

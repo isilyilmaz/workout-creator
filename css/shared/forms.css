@@ -1,0 +1,335 @@
+/* Shared Form Components CSS */
+
+.form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.required-indicator {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background: #333333;
+    border: 1px solid #4a4a4a;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.form-input:disabled {
+    background: #2a2a2a;
+    color: #888888;
+    cursor: not-allowed;
+}
+
+.form-input:readonly {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+}
+
+.form-input-error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+.form-input option {
+    background: #333333;
+    color: #ffffff;
+}
+
+/* Textarea specific styles */
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+/* Checkbox styles */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    accent-color: #4a90e2;
+}
+
+.checkbox-label {
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Radio button styles */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radio-item input[type="radio"] {
+    width: auto;
+    margin: 0;
+    accent-color: #4a90e2;
+}
+
+.radio-label {
+    margin: 0;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Form row for inline fields */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #3a3a3a;
+}
+
+.form-actions-center {
+    justify-content: center;
+}
+
+.form-actions-start {
+    justify-content: flex-start;
+}
+
+.form-actions-between {
+    justify-content: space-between;
+}
+
+/* Help text */
+.form-help-text {
+    display: block;
+    color: #888888;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* Error messages */
+.form-error-message {
+    display: none;
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.form-error-message.show {
+    display: block;
+}
+
+/* Form sections */
+.form-section {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.form-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.form-section-description {
+    color: #888888;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Input groups with icons or buttons */
+.form-input-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.form-input-group .form-input {
+    border-radius: 6px 0 0 6px;
+    border-right: none;
+}
+
+.form-input-group .input-group-addon {
+    background: #4a4a4a;
+    border: 1px solid #4a4a4a;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    padding: 12px;
+    color: #ffffff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* File upload styling */
+.form-file-input {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-file-input input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.form-file-input-label {
+    display: block;
+    padding: 12px;
+    background: #333333;
+    border: 2px dashed #4a4a4a;
+    border-radius: 6px;
+    text-align: center;
+    color: #888888;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.form-file-input:hover .form-file-input-label {
+    border-color: #4a90e2;
+    background: #2a2a2a;
+    color: #ffffff;
+}
+
+.form-file-input.has-file .form-file-input-label {
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+/* Loading state */
+.form-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.form-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dark theme adjustments */
+.form.theme-light .form-input {
+    background: #ffffff;
+    border-color: #d1d5db;
+    color: #1f2937;
+}
+
+.form.theme-light .form-label {
+    color: #1f2937;
+}
+
+.form.theme-light .form-help-text {
+    color: #6b7280;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .form-row,
+    .form-row-2 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .form-actions.stack-mobile .btn {
+        width: 100%;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .form-input {
+        padding: 10px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}
+
+@media (max-width: 480px) {
+    .form-input {
+        padding: 8px;
+    }
+    
+    .form-section {
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+    }
+    
+    .form-section-title {
+        font-size: 16px;
+    }
+}

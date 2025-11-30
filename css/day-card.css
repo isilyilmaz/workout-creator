@@ -1,0 +1,184 @@
+/* Day Card Component Styles */
+@import url('shared/buttons.css');
+.day-column {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border-radius: 12px;
+    padding: 0;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.day-column:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(96, 165, 250, 0.3);
+}
+
+.day-header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    padding: 16px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.day-header h3 {
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+.exercise-cards {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 200px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.exercise-cards:empty::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
+    border-radius: 8px;
+    opacity: 0.3;
+}
+
+.day-actions {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Button styles now in shared/buttons.css */
+
+/* Exercise Card Styles */
+.exercise-card {
+    background: rgba(45, 45, 45, 0.8);
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.exercise-card:hover {
+    background: rgba(55, 55, 55, 0.9);
+    border-color: rgba(96, 165, 250, 0.3);
+    transform: translateX(2px);
+}
+
+.exercise-card .remove-exercise {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(220, 38, 38, 0.8);
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.exercise-card .remove-exercise:hover {
+    background: rgba(239, 68, 68, 1);
+    transform: scale(1.1);
+}
+
+.exercise-name {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.exercise-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sets-reps,
+.intensity {
+    font-size: 0.8rem;
+    color: #d1d5db;
+    line-height: 1.2;
+}
+
+.sets-reps {
+    font-weight: 500;
+}
+
+.intensity {
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .day-column {
+        min-height: 350px;
+    }
+    
+    .day-header {
+        padding: 12px 16px;
+    }
+    
+    .day-header h3 {
+        font-size: 1rem;
+    }
+    
+    .exercise-cards {
+        padding: 12px;
+        min-height: 150px;
+    }
+    
+    .day-actions {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .day-column {
+        min-height: 300px;
+    }
+    
+    .exercise-cards {
+        min-height: 120px;
+    }
+    
+    .exercise-card {
+        padding: 10px;
+    }
+    
+    .exercise-name {
+        font-size: 0.85rem;
+    }
+    
+    .sets-reps,
+    .intensity {
+        font-size: 0.75rem;
+    }
+}

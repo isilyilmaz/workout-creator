@@ -1,0 +1,118 @@
+{
+    "equipmentTypes": [
+        {
+            "id": "barbell",
+            "name": "Barbell",
+            "description": "Heavy weighted bar exercises for compound movements",
+            "icon": "🏋️",
+            "category": "weights"
+        },
+        {
+            "id": "dumbbell",
+            "name": "Dumbbell",
+            "description": "Versatile weights for unilateral and isolation exercises",
+            "icon": "🏋️‍♀️",
+            "category": "weights"
+        },
+        {
+            "id": "cable",
+            "name": "Cable Machine",
+            "description": "Pulley system for constant tension exercises",
+            "icon": "🔗",
+            "category": "machines"
+        },
+        {
+            "id": "machine",
+            "name": "Weight Machine",
+            "description": "Guided movement machines for safe, controlled exercises",
+            "icon": "⚙️",
+            "category": "machines"
+        },
+        {
+            "id": "bodyweight",
+            "name": "Bodyweight",
+            "description": "Using your own body weight as resistance",
+            "icon": "🤸",
+            "category": "bodyweight"
+        },
+        {
+            "id": "noEquipment",
+            "name": "No Equipment",
+            "description": "Exercises requiring no additional equipment",
+            "icon": "🏃",
+            "category": "bodyweight"
+        },
+        {
+            "id": "cardio",
+            "name": "Cardio Equipment",
+            "description": "Cardiovascular training machines and activities",
+            "icon": "❤️",
+            "category": "cardio"
+        },
+        {
+            "id": "stretching",
+            "name": "Stretching",
+            "description": "Flexibility and mobility exercises",
+            "icon": "🧘",
+            "category": "flexibility"
+        },
+        {
+            "id": "resistance_bands",
+            "name": "Resistance Bands",
+            "description": "Elastic bands for variable resistance training",
+            "icon": "🔴",
+            "category": "accessories"
+        },
+        {
+            "id": "kettlebell",
+            "name": "Kettlebell",
+            "description": "Cast iron weights for dynamic movements",
+            "icon": "⚫",
+            "category": "weights"
+        },
+        {
+            "id": "medicine_ball",
+            "name": "Medicine Ball",
+            "description": "Weighted balls for functional training",
+            "icon": "⚽",
+            "category": "accessories"
+        },
+        {
+            "id": "foam_roller",
+            "name": "Foam Roller",
+            "description": "Myofascial release and recovery tool",
+            "icon": "🌊",
+            "category": "recovery"
+        }
+    ],
+    "categories": {
+        "weights": {
+            "name": "Free Weights",
+            "description": "Traditional weight training equipment"
+        },
+        "machines": {
+            "name": "Machines",
+            "description": "Weight machines and cable systems"
+        },
+        "bodyweight": {
+            "name": "Bodyweight",
+            "description": "No external weight required"
+        },
+        "cardio": {
+            "name": "Cardio",
+            "description": "Cardiovascular training equipment"
+        },
+        "flexibility": {
+            "name": "Flexibility",
+            "description": "Stretching and mobility work"
+        },
+        "accessories": {
+            "name": "Accessories",
+            "description": "Additional training tools"
+        },
+        "recovery": {
+            "name": "Recovery",
+            "description": "Post-workout recovery tools"
+        }
+    }
+}

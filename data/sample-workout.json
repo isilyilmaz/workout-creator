@@ -1,0 +1,96 @@
+{
+  "name": "Sample Push/Pull Workout",
+  "days": {
+    "monday": [
+      {
+        "type": "exercise",
+        "name": "Bench Press",
+        "sets": 4,
+        "reps": 8,
+        "intensity": 80
+      },
+      {
+        "type": "exercise",
+        "name": "Incline Dumbbell Press",
+        "sets": 3,
+        "reps": 12,
+        "intensity": 75
+      },
+      {
+        "type": "rest",
+        "duration": 3,
+        "restType": "active"
+      },
+      {
+        "type": "exercise",
+        "name": "Triceps Pushdown",
+        "sets": 3,
+        "reps": 15,
+        "intensity": 70
+      }
+    ],
+    "tuesday": [
+      {
+        "type": "exercise",
+        "name": "Pull-ups",
+        "sets": 4,
+        "reps": "max",
+        "intensity": 85
+      },
+      {
+        "type": "exercise",
+        "name": "Barbell Row",
+        "sets": 4,
+        "reps": 8,
+        "intensity": 80
+      },
+      {
+        "type": "exercise",
+        "name": "Barbell Curl",
+        "sets": 3,
+        "reps": 12,
+        "intensity": 75
+      }
+    ],
+    "wednesday": [],
+    "thursday": [
+      {
+        "type": "exercise",
+        "name": "Squat",
+        "sets": 4,
+        "reps": 10,
+        "intensity": 85
+      },
+      {
+        "type": "exercise",
+        "name": "Deadlift",
+        "sets": 3,
+        "reps": 6,
+        "intensity": 90
+      },
+      {
+        "type": "rest",
+        "duration": 5,
+        "restType": "complete"
+      }
+    ],
+    "friday": [],
+    "saturday": [],
+    "sunday": [
+      {
+        "type": "exercise",
+        "name": "Overhead Press",
+        "sets": 3,
+        "reps": 10,
+        "intensity": 75
+      },
+      {
+        "type": "exercise",
+        "name": "Lateral Raise",
+        "sets": 4,
+        "reps": 15,
+        "intensity": 60
+      }
+    ]
+  }
+}

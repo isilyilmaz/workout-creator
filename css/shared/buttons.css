@@ -1,0 +1,246 @@
+/* Shared Button System */
+
+/* Base Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm, 8px) var(--spacing-lg, 16px);
+    border: none;
+    border-radius: 0.375rem;
+    font-size: var(--font-size-base, 14px);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.3s ease);
+    gap: var(--spacing-sm, 8px);
+    position: relative;
+    white-space: nowrap;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Primary Buttons */
+.btn-primary {
+    background: #4a90e2;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #3a7bc8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+/* Secondary Buttons */
+.btn-secondary {
+    background: #4a4a4a;
+    color: #ffffff;
+    border: 1px solid #5a5a5a;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #5a5a5a;
+    border-color: #6a6a6a;
+}
+
+/* Outline Buttons */
+.btn-outline {
+    background-color: transparent;
+    color: #4a90e2;
+    border: 1px solid #4a90e2;
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: #4a90e2;
+    color: #ffffff;
+}
+
+/* Danger Buttons */
+.btn-danger {
+    background: #ef4444;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Success Buttons */
+.btn-success {
+    background: #22c55e;
+    color: #ffffff;
+    box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+}
+
+.btn-success:hover:not(:disabled) {
+    background: #16a34a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Button Sizes */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.btn-lg {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.btn-xl {
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Full Width Buttons */
+.btn-block {
+    width: 100%;
+}
+
+/* Icon Buttons */
+.btn-icon {
+    padding: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.btn-icon.btn-sm {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+}
+
+.btn-icon.btn-lg {
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+}
+
+/* Special Workout Buttons */
+.load-workout-btn,
+.save-workout-btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.load-workout-btn {
+    background: #4a4a4a;
+    color: #ffffff;
+}
+
+.load-workout-btn:hover {
+    background: #5a5a5a;
+    transform: translateY(-1px);
+}
+
+.save-workout-btn {
+    background: #4a90e2;
+    color: #ffffff;
+}
+
+.save-workout-btn:hover {
+    background: #3a7bc8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Day Action Buttons */
+.add-exercise-btn,
+.add-rest-btn {
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.add-exercise-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.add-exercise-btn:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+.add-rest-btn {
+    background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+}
+
+.add-rest-btn:hover {
+    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+    box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
+    transform: translateY(-1px);
+}
+
+.add-exercise-btn:active,
+.add-rest-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .btn {
+        padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
+        font-size: 13px;
+    }
+    
+    .btn-lg {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    
+    .btn-xl {
+        padding: 14px 28px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-responsive {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .load-workout-btn,
+    .save-workout-btn {
+        width: 100%;
+    }
+}
