@@ -5,7 +5,7 @@
       {
         "type": "exercise",
         "name": "Bench Press",
-        "reps": "4 sets × 8 reps",
+        "reps": "4 sets \u00d7 8 reps",
         "weight": "80%",
         "sets": 4,
         "repsCount": 8,
@@ -15,12 +15,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_1"
       },
       {
         "type": "exercise",
         "name": "Overhead Press",
-        "reps": "3 sets × 10 reps",
+        "reps": "3 sets \u00d7 10 reps",
         "weight": "70%",
         "sets": 3,
         "repsCount": 10,
@@ -30,12 +31,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_2"
       },
       {
         "type": "exercise",
         "name": "Incline Dumbbell Press",
-        "reps": "3 sets × 12 reps",
+        "reps": "3 sets \u00d7 12 reps",
         "weight": "75%",
         "sets": 3,
         "repsCount": 12,
@@ -45,12 +47,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_9"
       },
       {
         "type": "exercise",
         "name": "Lateral Raise",
-        "reps": "3 sets × 15 reps",
+        "reps": "3 sets \u00d7 15 reps",
         "weight": "60%",
         "sets": 3,
         "repsCount": 15,
@@ -60,12 +63,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_12"
       },
       {
         "type": "exercise",
         "name": "Triceps Pushdown",
-        "reps": "3 sets × 12 reps",
+        "reps": "3 sets \u00d7 12 reps",
         "weight": "70%",
         "sets": 3,
         "repsCount": 12,
@@ -75,12 +79,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_21"
       },
       {
         "type": "exercise",
         "name": "Dips",
-        "reps": "3 sets × max reps",
+        "reps": "3 sets \u00d7 max reps",
         "weight": "",
         "sets": 3,
         "repsCount": "max",
@@ -90,7 +95,8 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_30"
       }
     ],
     "tuesday": [],
@@ -98,7 +104,7 @@
       {
         "type": "exercise",
         "name": "Bench Press",
-        "reps": "4 sets × 8 reps",
+        "reps": "4 sets \u00d7 8 reps",
         "weight": "80%",
         "sets": 4,
         "repsCount": 8,
@@ -108,12 +114,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_1"
       },
       {
         "type": "exercise",
         "name": "Overhead Press",
-        "reps": "3 sets × 10 reps",
+        "reps": "3 sets \u00d7 10 reps",
         "weight": "70%",
         "sets": 3,
         "repsCount": 10,
@@ -123,12 +130,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_2"
       },
       {
         "type": "exercise",
         "name": "Incline Dumbbell Press",
-        "reps": "3 sets × 12 reps",
+        "reps": "3 sets \u00d7 12 reps",
         "weight": "75%",
         "sets": 3,
         "repsCount": 12,
@@ -138,12 +146,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_9"
       },
       {
         "type": "exercise",
         "name": "Lateral Raise",
-        "reps": "3 sets × 15 reps",
+        "reps": "3 sets \u00d7 15 reps",
         "weight": "60%",
         "sets": 3,
         "repsCount": 15,
@@ -153,12 +162,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_12"
       },
       {
         "type": "exercise",
         "name": "Triceps Pushdown",
-        "reps": "3 sets × 12 reps",
+        "reps": "3 sets \u00d7 12 reps",
         "weight": "70%",
         "sets": 3,
         "repsCount": 12,
@@ -168,12 +178,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_21"
       },
       {
         "type": "exercise",
         "name": "Dips",
-        "reps": "3 sets × max reps",
+        "reps": "3 sets \u00d7 max reps",
         "weight": "",
         "sets": 3,
         "repsCount": "max",
@@ -183,7 +194,8 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_30"
       }
     ],
     "thursday": [],
@@ -191,7 +203,7 @@
       {
         "type": "exercise",
         "name": "Bench Press",
-        "reps": "4 sets × 8 reps",
+        "reps": "4 sets \u00d7 8 reps",
         "weight": "80%",
         "sets": 4,
         "repsCount": 8,
@@ -201,12 +213,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_1"
       },
       {
         "type": "exercise",
         "name": "Overhead Press",
-        "reps": "3 sets × 10 reps",
+        "reps": "3 sets \u00d7 10 reps",
         "weight": "70%",
         "sets": 3,
         "repsCount": 10,
@@ -216,12 +229,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_2"
       },
       {
         "type": "exercise",
         "name": "Incline Dumbbell Press",
-        "reps": "3 sets × 12 reps",
+        "reps": "3 sets \u00d7 12 reps",
         "weight": "75%",
         "sets": 3,
         "repsCount": 12,
@@ -231,12 +245,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_9"
       },
       {
         "type": "exercise",
         "name": "Lateral Raise",
-        "reps": "3 sets × 15 reps",
+        "reps": "3 sets \u00d7 15 reps",
         "weight": "60%",
         "sets": 3,
         "repsCount": 15,
@@ -246,12 +261,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_12"
       },
       {
         "type": "exercise",
         "name": "Triceps Pushdown",
-        "reps": "3 sets × 12 reps",
+        "reps": "3 sets \u00d7 12 reps",
         "weight": "70%",
         "sets": 3,
         "repsCount": 12,
@@ -261,12 +277,13 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_21"
       },
       {
         "type": "exercise",
         "name": "Dips",
-        "reps": "3 sets × max reps",
+        "reps": "3 sets \u00d7 max reps",
         "weight": "",
         "sets": 3,
         "repsCount": "max",
@@ -276,7 +293,8 @@
         "weightValue": 0,
         "weightUnit": "kg",
         "paceValue": 0,
-        "paceUnit": "km/h"
+        "paceUnit": "km/h",
+        "exerciseId": "exercise_30"
       }
     ],
     "saturday": [],

@@ -1,6 +1,7 @@
 /**
  * Main Application Entry Point
  * Initializes the Workout Creator application
+ * Cache-bust: v1.1 - Fixed process.env browser compatibility
  */
 import { AppController } from './presentation/controllers/AppController.js';
 
@@ -49,7 +50,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Add some utility functions to global scope for debugging
-if (process.env.NODE_ENV === 'development') {
+// Check if running in development environment (localhost)
+const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+if (isDevelopment) {
     window.debug = {
         getApp: () => window.app,
         getState: () => window.app?.getState(),

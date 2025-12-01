@@ -23,32 +23,75 @@ export class WorkoutManager {
         
         switch (event) {
             case 'workoutLoaded':
+                console.log('WorkoutManager: Workout loaded event received, updating UI...');
                 this.updateWorkoutNameInput();
+                console.log('WorkoutManager: Starting populateAllDays...');
                 this.populateAllDays();
                 break;
             case 'exerciseAdded':
             case 'exerciseUpdated':
             case 'exerciseRemoved':
+                console.log(`WorkoutManager: ${event} for day ${data.day}`);
                 this.renderDayExercises(data.day);
                 break;
             case 'dayCleared':
+                console.log(`WorkoutManager: Day cleared for ${data.day}`);
                 this.renderDayExercises(data.day);
                 break;
             case 'workoutReset':
+                console.log('WorkoutManager: Workout reset, updating UI...');
                 this.updateWorkoutNameInput();
                 this.populateAllDays();
                 break;
+            default:
+                console.log(`WorkoutManager: Unknown event received: ${event}`);
         }
     }
 
     /**
      * Initialize workout management for a page
      */
-    initialize() {
+    async initialize() {
         if (this.isInitialized) return;
 
         this.setupEventListeners();
+        await this.populateExerciseDropdown();
         this.isInitialized = true;
+    }
+
+    /**
+     * Populate exercise dropdown with database exercises
+     */
+    async populateExerciseDropdown() {
+        try {
+            const exerciseService = this.workoutDataManager.getExerciseDataService();
+            const exercises = await exerciseService.getAllExercises();
+            
+            const select = document.getElementById('exercise-name-select');
+            if (select) {
+                // Keep the default option
+                const defaultOption = select.querySelector('option[value=""]');
+                select.innerHTML = '';
+                
+                // Re-add default option
+                if (defaultOption) {
+                    select.appendChild(defaultOption);
+                }
+                
+                // Add exercises from database
+                exercises.forEach(exercise => {
+                    const option = document.createElement('option');
+                    option.value = exercise.id; // Use exercise ID as value
+                    option.textContent = exercise.name;
+                    option.setAttribute('data-exercise-name', exercise.name);
+                    select.appendChild(option);
+                });
+                
+                console.log(`Populated exercise dropdown with ${exercises.length} exercises`);
+            }
+        } catch (error) {
+            console.error('Error populating exercise dropdown:', error);
+        }
     }
 
     /**
@@ -77,6 +120,16 @@ export class WorkoutManager {
                 this.handleConfirmAddRest(e);
             } else if (e.target.matches('[data-action="confirm-edit-exercise"]')) {
                 this.handleConfirmEditExercise(e);
+            } else if (e.target.matches('[data-action="show-exercise-demo"]') || e.target.closest('[data-action="show-exercise-demo"]')) {
+                this.handleShowExerciseDemo(e);
+            } else if (e.target.matches('[data-action="edit-exercise"]') || e.target.closest('[data-action="edit-exercise"]')) {
+                this.handleEditExerciseFromItem(e);
+            } else if (e.target.matches('[data-action="delete-exercise"]') || e.target.closest('[data-action="delete-exercise"]')) {
+                this.handleDeleteExerciseFromItem(e);
+            } else if (e.target.matches('[data-action="close-demonstration"]')) {
+                this.closeExerciseDemonstration();
+            } else if (e.target.matches('[data-action="edit-exercise-from-demo"]')) {
+                this.handleEditExerciseFromDemo(e);
             } else if (e.target.matches('.remove-exercise')) {
                 this.handleRemoveExercise(e);
             } else if (e.target.closest('.exercise-card')) {
@@ -84,12 +137,12 @@ export class WorkoutManager {
             }
         });
 
-        // File input change event
-        document.addEventListener('change', (e) => {
-            if (e.target.matches('#workout-file-input')) {
-                this.handleWorkoutFileLoad(e);
-            }
-        });
+        // File input change event - No longer needed as we use fixed path loading
+        // document.addEventListener('change', (e) => {
+        //     if (e.target.matches('#workout-file-input')) {
+        //         this.handleWorkoutFileLoad(e);
+        //     }
+        // });
 
         // Workout name input change
         document.addEventListener('input', (e) => {
@@ -97,15 +150,47 @@ export class WorkoutManager {
                 this.workoutDataManager.updateWorkoutMetadata({ name: e.target.value });
             }
         });
+
+        // Drag and drop events for exercise reordering
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.closest('.exercise-item')) {
+                this.handleDragStart(e);
+            }
+        });
+
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            this.handleDragOver(e);
+        });
+
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            this.handleDrop(e);
+        });
+
+        document.addEventListener('dragend', (e) => {
+            this.handleDragEnd(e);
+        });
     }
 
     /**
      * Load workout data and populate interface
      */
     loadWorkoutData(data) {
+        console.log('WorkoutManager: Starting workout data load process');
+        console.log('WorkoutManager: Workout data to load:', {
+            name: data.name,
+            dayCount: data.days ? Object.keys(data.days).length : 0,
+            hasExercises: data.days ? Object.values(data.days).some(day => day.length > 0) : false
+        });
+        
         const result = this.workoutDataManager.loadWorkoutData(data);
         if (!result.success) {
+            console.error('WorkoutManager: Failed to load workout data:', result.error);
             this.showError(`Failed to load workout: ${result.error}`);
+        } else {
+            console.log('WorkoutManager: Workout data loaded successfully into WorkoutDataManager');
+            console.log('WorkoutManager: Observer notifications should trigger populateAllDays');
         }
         return result;
     }
@@ -128,72 +213,196 @@ export class WorkoutManager {
     populateAllDays() {
         const allDays = this.workoutDataManager.getAllDays();
         console.log('PopulateAllDays called with data:', allDays);
-        Object.keys(allDays).forEach(day => {
-            console.log(`Processing day: ${day}`);
-            this.renderDayExercises(day);
-        });
+        
+        // Add a small delay to ensure DOM elements are ready
+        setTimeout(() => {
+            Object.keys(allDays).forEach(day => {
+                console.log(`Processing day: ${day}`);
+                this.renderDayExercises(day);
+            });
+        }, 50); // Small delay to allow include processing to complete
     }
 
     /**
      * Render exercises for a specific day
      */
-    renderDayExercises(day) {
+    async renderDayExercises(day, retryCount = 0) {
         const exerciseContainer = document.getElementById(`${day}-exercises`);
         if (!exerciseContainer) {
-            console.warn(`Exercise container not found for day: ${day}`);
+            console.warn(`Exercise container not found for day: ${day} (attempt ${retryCount + 1})`);
+            
+            // If DOM elements not ready, retry after a short delay
+            if (retryCount < 3) {
+                setTimeout(() => {
+                    this.renderDayExercises(day, retryCount + 1);
+                }, 100 * (retryCount + 1)); // Progressive delay: 100ms, 200ms, 300ms
+                return;
+            }
+            
+            console.error(`Failed to find exercise container for ${day} after ${retryCount + 1} attempts`);
             return;
         }
 
-        const exercises = this.workoutDataManager.getExercisesForDay(day);
-        console.log(`Rendering ${exercises.length} exercises for ${day}:`, exercises);
-        
-        exerciseContainer.innerHTML = exercises.map((exercise, index) => {
-            if (exercise.type === 'exercise') {
-                return this.createExerciseCardHTML(exercise, index);
-            } else if (exercise.type === 'rest') {
-                return this.createRestCardHTML(exercise, index);
-            } else {
-                // Handle exercises without explicit type (assume exercise)
-                return this.createExerciseCardHTML({...exercise, type: 'exercise'}, index);
-            }
-        }).filter(html => html).join('');
+        try {
+            // Get enhanced exercises with database data
+            const exercises = await this.workoutDataManager.getEnhancedExercisesForDay(day);
+            console.log(`Rendering ${exercises.length} enhanced exercises for ${day}:`, exercises);
+            
+            exerciseContainer.innerHTML = exercises.map((exercise, index) => {
+                if (exercise.type === 'exercise') {
+                    return this.createExerciseCardHTML(exercise, index);
+                } else if (exercise.type === 'rest') {
+                    return this.createRestCardHTML(exercise, index);
+                } else {
+                    // Handle exercises without explicit type (assume exercise)
+                    return this.createExerciseCardHTML({...exercise, type: 'exercise'}, index);
+                }
+            }).filter(html => html).join('');
+            
+            console.log(`Successfully rendered ${exercises.length} exercises for ${day}`);
+        } catch (error) {
+            console.error(`Error rendering exercises for ${day}:`, error);
+            // Fallback to basic rendering if enhanced fails
+            this.renderBasicDayExercises(day);
+        }
     }
 
     /**
-     * Create exercise card HTML
+     * Fallback method to render exercises without database enhancement
+     */
+    renderBasicDayExercises(day) {
+        const exerciseContainer = document.getElementById(`${day}-exercises`);
+        if (!exerciseContainer) return;
+
+        const exercises = this.workoutDataManager.getExercisesForDay(day);
+        console.log(`Fallback rendering ${exercises.length} exercises for ${day}`);
+        
+        try {
+            exerciseContainer.innerHTML = exercises.map((exercise, index) => {
+                if (exercise.type === 'exercise') {
+                    return this.createExerciseCardHTML(exercise, index);
+                } else if (exercise.type === 'rest') {
+                    return this.createRestCardHTML(exercise, index);
+                } else {
+                    return this.createExerciseCardHTML({...exercise, type: 'exercise'}, index);
+                }
+            }).filter(html => html).join('');
+        } catch (error) {
+            console.error(`Error in fallback rendering for ${day}:`, error);
+        }
+    }
+
+    /**
+     * Create exercise card HTML using template
      */
     createExerciseCardHTML(exercise, index) {
         const repsText = exercise.reps === 'max' ? 'max reps' : `${exercise.reps} reps`;
-        return `
-            <div class="exercise-card" data-index="${index}">
-                <button class="remove-exercise">×</button>
-                <div class="exercise-name">${exercise.name}</div>
-                <div class="exercise-details">
-                    <div class="sets-reps">${exercise.sets} sets × ${repsText}</div>
-                    <div class="intensity">${exercise.intensity}%</div>
-                </div>
-            </div>
-        `;
+        
+        // Use the exercise-item template with enhanced data
+        return this.renderExerciseItemTemplate({
+            index: index,
+            exerciseName: exercise.name,
+            exerciseType: 'exercise',
+            isExercise: true,
+            sets: exercise.sets,
+            repsDisplay: repsText,
+            intensity: exercise.intensity,
+            exerciseId: exercise.exerciseId,
+            targetMuscles: exercise.targetMuscles,
+            equipment: exercise.equipment,
+            difficultyLevel: exercise.difficultyLevel,
+            video: exercise.video
+        });
     }
 
     /**
-     * Create rest card HTML
+     * Create rest card HTML using template
      */
     createRestCardHTML(rest, index) {
-        return `
-            <div class="rest-card" data-index="${index}">
-                <button class="remove-exercise">×</button>
-                <div class="exercise-name">Rest Period</div>
-                <div class="exercise-details">
-                    <div class="sets-reps">${rest.duration} minutes</div>
-                    <div class="intensity">${rest.restType}</div>
-                </div>
-            </div>
-        `;
+        // Use the exercise-item template for rest periods
+        return this.renderExerciseItemTemplate({
+            index: index,
+            exerciseName: 'Rest Period',
+            exerciseType: 'rest',
+            isExercise: false,
+            duration: rest.duration,
+            restType: rest.restType
+        });
     }
 
     /**
-     * Handle save workout
+     * Render exercise item template with data
+     */
+    renderExerciseItemTemplate(data) {
+        // Simple template rendering since we don't have a full templating engine
+        let template = `
+            <div class="exercise-item" 
+                 data-exercise-index="${data.index}" 
+                 data-exercise-name="${data.exerciseName}"
+                 data-exercise-type="${data.exerciseType}"
+                 draggable="true">
+                
+                <!-- Drag Handle -->
+                <div class="exercise-drag-handle" title="Drag to reorder">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                        <circle cx="3" cy="3" r="1"/>
+                        <circle cx="9" cy="3" r="1"/>
+                        <circle cx="3" cy="6" r="1"/>
+                        <circle cx="9" cy="6" r="1"/>
+                        <circle cx="3" cy="9" r="1"/>
+                        <circle cx="9" cy="9" r="1"/>
+                    </svg>
+                </div>
+                
+                <!-- Exercise Content -->
+                <div class="exercise-content" data-action="show-exercise-demo">
+                    <div class="exercise-name">${data.exerciseName}</div>
+                    <div class="exercise-details">`;
+        
+        if (data.isExercise) {
+            template += `
+                        <div class="sets-reps">${data.sets} sets × ${data.repsDisplay}</div>
+                        <div class="intensity">${data.intensity}%</div>`;
+        } else {
+            template += `
+                        <div class="sets-reps">${data.duration} minutes</div>
+                        <div class="rest-type">${data.restType}</div>`;
+        }
+        
+        template += `
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="exercise-actions">`;
+        
+        if (data.isExercise) {
+            template += `
+                    <button class="exercise-edit-btn" 
+                            data-action="edit-exercise" 
+                            title="Edit exercise">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                            <path d="M11.7 3.3L10.7 2.3c-.4-.4-1-.4-1.4 0L2 9.6V12h2.4l7.3-7.3c.4-.4.4-1 0-1.4zM4.6 11H3V9.4l6-6 1.6 1.6-6 6z"/>
+                        </svg>
+                    </button>`;
+        }
+        
+        template += `
+                    <button class="exercise-delete-btn" 
+                            data-action="delete-exercise" 
+                            title="Delete ${data.isExercise ? 'exercise' : 'rest period'}">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                            <path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4 12.6 14 14 12.6 8.4 7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>`;
+        
+        return template;
+    }
+
+    /**
+     * Handle save workout to fixed path data/sample-workout.json
      */
     handleSaveWorkout(e) {
         try {
@@ -202,28 +411,75 @@ export class WorkoutManager {
             
             const link = document.createElement('a');
             link.href = url;
-            link.download = exportData.filename;
+            link.download = 'sample-workout-with-ids.json'; // Fixed filename for data directory
             link.click();
             
             const workoutData = this.workoutDataManager.getWorkoutData();
-            this.showSuccess(`Workout "${workoutData.name}" saved successfully!`);
+            this.showSuccess(`Workout "${workoutData.name}" saved as sample-workout-with-ids.json. Move the downloaded file to the data/ directory to use with the Load button.`);
+            
+            // Clean up the URL object
+            URL.revokeObjectURL(url);
         } catch (error) {
-            console.error('Error saving workout:', error);
+            console.error('WorkoutManager: Error saving workout:', error);
             this.showError('Failed to save workout');
         }
     }
 
     /**
-     * Handle load workout from JSON file
+     * Handle load workout from fixed path data/sample-workout.json
      */
-    handleLoadWorkout(e) {
-        console.log('Load workout button clicked');
-        const fileInput = document.getElementById('workout-file-input');
-        if (fileInput) {
-            console.log('File input found, triggering click');
-            fileInput.click();
-        } else {
-            console.error('File input not found');
+    async handleLoadWorkout(e) {
+        console.log('WorkoutManager: Load workout button clicked - fetching from data/sample-workout.json');
+        
+        try {
+            // Show loading state
+            const button = e.target;
+            const originalText = button.textContent;
+            button.textContent = 'Loading...';
+            button.disabled = true;
+            
+            // Fetch workout data from fixed path
+            const response = await fetch('./data/sample-workout-with-ids.json');
+            
+            if (!response.ok) {
+                if (response.status === 404) {
+                    throw new Error('sample-workout-with-ids.json not found in data/ directory. Save a workout first.');
+                }
+                throw new Error(`Failed to load sample-workout-with-ids.json: ${response.statusText}`);
+            }
+            
+            const workoutData = await response.json();
+            console.log('WorkoutManager: Successfully fetched workout data from data/sample-workout-with-ids.json:', workoutData);
+            
+            // Load the workout data into the system
+            const result = this.loadWorkoutData(workoutData);
+            if (result.success) {
+                this.showSuccess(`Workout "${workoutData.name}" loaded from sample-workout-with-ids.json successfully!`);
+            } else {
+                throw new Error(result.error);
+            }
+            
+            // Restore button state
+            button.textContent = originalText;
+            button.disabled = false;
+            
+        } catch (error) {
+            console.error('WorkoutManager: Error loading workout from data/sample-workout.json:', error);
+            
+            // Restore button state
+            const button = e.target;
+            button.textContent = button.getAttribute('data-original-text') || 'Load Workout';
+            button.disabled = false;
+            
+            // Show appropriate error message
+            let errorMessage = 'Failed to load sample-workout-with-ids.json.';
+            if (error.message.includes('not found') || error.message.includes('404')) {
+                errorMessage = 'sample-workout-with-ids.json not found. Save a workout first, then move the file to the data/ directory.';
+            } else if (error.message.includes('JSON')) {
+                errorMessage = 'sample-workout-with-ids.json contains invalid data. Please check the file format.';
+            }
+            
+            this.showError(errorMessage);
         }
     }
 
@@ -231,27 +487,71 @@ export class WorkoutManager {
      * Handle workout file loading
      */
     handleWorkoutFileLoad(e) {
-        console.log('File input changed, files:', e.target.files);
+        console.log('WorkoutManager: File input changed, files:', e.target.files);
         const file = e.target.files[0];
         if (!file) {
-            console.log('No file selected');
+            console.log('WorkoutManager: No file selected');
             return;
         }
 
-        console.log('File selected:', file.name, file.type, file.size);
+        // Validate file type
+        if (!file.name.toLowerCase().endsWith('.json')) {
+            this.showError('Please select a JSON file');
+            return;
+        }
+
+        // Validate file size (max 10MB)
+        if (file.size > 10 * 1024 * 1024) {
+            this.showError('File size too large. Please select a file smaller than 10MB');
+            return;
+        }
+
+        console.log(`WorkoutManager: File selected - ${file.name}, ${file.type}, ${file.size} bytes`);
         const reader = new FileReader();
+        
         reader.onload = (e) => {
             try {
-                console.log('File content loaded, parsing JSON...');
+                console.log('WorkoutManager: File content loaded, parsing JSON...');
                 const workoutData = JSON.parse(e.target.result);
-                console.log('JSON parsed successfully:', workoutData);
-                this.loadWorkoutData(workoutData);
-                this.showSuccess(`Workout "${workoutData.name}" loaded successfully!`);
+                
+                // Basic validation of workout data structure
+                if (!workoutData || typeof workoutData !== 'object') {
+                    throw new Error('Invalid workout data structure');
+                }
+                
+                if (!workoutData.name) {
+                    workoutData.name = 'Imported Workout';
+                }
+                
+                console.log('WorkoutManager: JSON parsed successfully:', workoutData);
+                console.log('WorkoutManager: Loading workout data into system...');
+                
+                const result = this.loadWorkoutData(workoutData);
+                if (result.success) {
+                    this.showSuccess(`Workout "${workoutData.name}" loaded successfully!`);
+                    console.log('WorkoutManager: Workout loading completed successfully');
+                } else {
+                    console.error('WorkoutManager: Workout loading failed:', result.error);
+                }
             } catch (error) {
-                console.error('Error loading workout:', error);
-                this.showError('Invalid workout file format');
+                console.error('WorkoutManager: Error processing workout file:', error);
+                let errorMessage = 'Invalid workout file format';
+                
+                if (error.message.includes('JSON')) {
+                    errorMessage = 'File is not valid JSON format';
+                } else if (error.message.includes('structure')) {
+                    errorMessage = 'Workout file has invalid structure';
+                }
+                
+                this.showError(errorMessage);
             }
         };
+        
+        reader.onerror = () => {
+            console.error('WorkoutManager: Error reading file');
+            this.showError('Error reading file. Please try again.');
+        };
+        
         reader.readAsText(file);
     }
 
@@ -294,22 +594,37 @@ export class WorkoutManager {
      * Handle confirm add exercise
      */
     handleConfirmAddExercise(e) {
-        const exerciseName = document.getElementById('exercise-name-select').value;
+        const exerciseSelect = document.getElementById('exercise-name-select');
+        const exerciseId = exerciseSelect.value;
         const sets = parseInt(document.getElementById('sets-input').value);
         const reps = parseInt(document.getElementById('reps-input').value);
         const intensity = parseInt(document.getElementById('intensity-input').value);
 
-        if (!exerciseName) {
+        if (!exerciseId) {
             this.showError('Please select an exercise');
             return;
         }
 
+        // Get exercise name from selected option
+        const selectedOption = exerciseSelect.options[exerciseSelect.selectedIndex];
+        const exerciseName = selectedOption.getAttribute('data-exercise-name') || selectedOption.textContent;
+
         const exercise = {
             type: 'exercise',
+            exerciseId: exerciseId,  // Include exercise ID for database lookup
             name: exerciseName,
             sets: sets,
             reps: reps,
-            intensity: intensity
+            intensity: intensity,
+            weight: `${intensity}%`,  // Also store as weight for consistency
+            repsCount: reps,  // Store for the JSON format
+            duration: "",
+            distance: "",
+            pace: "",
+            weightValue: 0,
+            weightUnit: "kg",
+            paceValue: 0,
+            paceUnit: "km/h"
         };
 
         // Add exercise using data manager
@@ -506,6 +821,383 @@ export class WorkoutManager {
             console.error('ERROR:', message);
             alert(message); // Fallback
         }
+    }
+
+    /**
+     * Handle show exercise demonstration
+     */
+    handleShowExerciseDemo(e) {
+        const exerciseItem = e.target.closest('.exercise-item');
+        if (!exerciseItem) return;
+
+        const exerciseName = exerciseItem.getAttribute('data-exercise-name');
+        const exerciseType = exerciseItem.getAttribute('data-exercise-type');
+        const exerciseIndex = exerciseItem.getAttribute('data-exercise-index');
+        
+        // Don't show demo for rest periods
+        if (exerciseType === 'rest') {
+            return;
+        }
+
+        const dayColumn = exerciseItem.closest('.day-column');
+        const day = dayColumn.getAttribute('data-day');
+        
+        // Get exercise data
+        const exercises = this.workoutDataManager.getExercisesForDay(day);
+        const exercise = exercises[parseInt(exerciseIndex)];
+        
+        if (exercise) {
+            this.showExerciseDemonstration(exercise, day, exerciseIndex);
+        }
+    }
+
+    /**
+     * Handle edit exercise from item
+     */
+    handleEditExerciseFromItem(e) {
+        const exerciseItem = e.target.closest('.exercise-item');
+        if (!exerciseItem) return;
+
+        const exerciseIndex = exerciseItem.getAttribute('data-exercise-index');
+        const dayColumn = exerciseItem.closest('.day-column');
+        const day = dayColumn.getAttribute('data-day');
+        
+        const exercises = this.workoutDataManager.getExercisesForDay(day);
+        const exercise = exercises[parseInt(exerciseIndex)];
+        
+        if (exercise && exercise.type === 'exercise') {
+            this.selectedDay = day;
+            this.editingExerciseIndex = parseInt(exerciseIndex);
+            this.showEditExerciseModal(exercise);
+        }
+    }
+
+    /**
+     * Handle delete exercise from item
+     */
+    handleDeleteExerciseFromItem(e) {
+        const exerciseItem = e.target.closest('.exercise-item');
+        if (!exerciseItem) return;
+
+        const exerciseIndex = exerciseItem.getAttribute('data-exercise-index');
+        const dayColumn = exerciseItem.closest('.day-column');
+        const day = dayColumn.getAttribute('data-day');
+        
+        const exercises = this.workoutDataManager.getExercisesForDay(day);
+        const item = exercises[parseInt(exerciseIndex)];
+        
+        const itemName = item.type === 'exercise' ? item.name : 'rest period';
+        
+        if (confirm(`Remove ${itemName}?`)) {
+            const result = this.workoutDataManager.removeExerciseFromDay(day, parseInt(exerciseIndex));
+            
+            if (result.success) {
+                this.showSuccess(`${itemName} removed`);
+            } else {
+                this.showError(`Failed to remove item: ${result.error}`);
+            }
+        }
+    }
+
+    /**
+     * Wait for modal elements to be available in DOM
+     */
+    async waitForModalElements(retryCount = 0, maxRetries = 10) {
+        const requiredElements = [
+            'demo-exercise-title',
+            'demo-video-container',
+            'video-placeholder',
+            'exercise-demonstration-modal'
+        ];
+
+        // Check if all required elements exist
+        const allElementsExist = requiredElements.every(id => document.getElementById(id) !== null);
+        
+        if (allElementsExist) {
+            return true;
+        }
+
+        if (retryCount >= maxRetries) {
+            console.error('Modal elements not available after maximum retries');
+            return false;
+        }
+
+        // Wait with exponential backoff
+        const delay = Math.min(100 * Math.pow(1.5, retryCount), 1000);
+        console.log(`Waiting for modal elements (attempt ${retryCount + 1}/${maxRetries + 1}), delay: ${delay}ms`);
+        
+        return new Promise((resolve) => {
+            setTimeout(async () => {
+                const result = await this.waitForModalElements(retryCount + 1, maxRetries);
+                resolve(result);
+            }, delay);
+        });
+    }
+
+    /**
+     * Show exercise demonstration modal
+     */
+    async showExerciseDemonstration(exercise, day, exerciseIndex) {
+        try {
+            // Store current exercise for edit functionality
+            this.demonstrationExercise = { exercise, day, exerciseIndex };
+            
+            // Wait for modal elements to be available
+            const elementsReady = await this.waitForModalElements();
+            if (!elementsReady) {
+                console.error('Modal elements not available, cannot show demonstration');
+                return;
+            }
+            
+            // Get enhanced exercise data if available
+            let enhancedExercise = exercise;
+            try {
+                enhancedExercise = await this.workoutDataManager.getExerciseDataService().getExerciseData(exercise);
+            } catch (error) {
+                console.warn('Could not enhance exercise data:', error);
+            }
+            
+            // Update modal content - now safely access DOM elements
+            const titleElement = document.getElementById('demo-exercise-title');
+            if (titleElement) {
+                titleElement.textContent = `${enhancedExercise.name} - Exercise Demonstration`;
+            }
+            
+            // Load YouTube video with enhanced data
+            await this.loadExerciseVideo(enhancedExercise.name, enhancedExercise);
+            
+            // Show modal
+            const modal = document.getElementById('exercise-demonstration-modal');
+            if (modal) {
+                modal.classList.add('show');
+            }
+        } catch (error) {
+            console.error('Error showing exercise demonstration:', error);
+        }
+    }
+
+    /**
+     * Load exercise demonstration video
+     */
+    async loadExerciseVideo(exerciseName, exerciseData) {
+        const videoContainer = document.getElementById('demo-video-container');
+        const placeholder = document.getElementById('video-placeholder');
+        
+        // Check if required DOM elements exist
+        if (!videoContainer || !placeholder) {
+            console.warn('Video container or placeholder not found in DOM');
+            return;
+        }
+        
+        try {
+            // Get exercise data service for video lookup
+            const exerciseService = this.workoutDataManager.getExerciseDataService();
+            
+            // If we have exercise data with video ID, use it
+            let videoId = null;
+            if (exerciseData && exerciseData.video) {
+                videoId = exerciseData.video;
+            } else {
+                // Try to find exercise by name in database
+                const searchResults = await exerciseService.searchExercises(exerciseName);
+                if (searchResults.length > 0 && searchResults[0].video) {
+                    videoId = searchResults[0].video;
+                }
+            }
+            
+            if (videoId) {
+                // Create YouTube iframe
+                const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                videoContainer.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="${embedUrl}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+                console.log(`Loaded YouTube video for ${exerciseName}: ${videoId}`);
+            } else {
+                // Show placeholder when no video is available
+                placeholder.innerHTML = `
+                    <div class="placeholder-content">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <p>Exercise demonstration for:</p>
+                        <h3>${exerciseName}</h3>
+                        <p>Video not available for this exercise</p>
+                    </div>
+                `;
+                console.log(`No video found for exercise: ${exerciseName}`);
+            }
+        } catch (error) {
+            console.error('Error loading exercise video:', error);
+            
+            // Show error placeholder
+            placeholder.innerHTML = `
+                <div class="placeholder-content">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <p>Exercise demonstration for:</p>
+                    <h3>${exerciseName}</h3>
+                    <p>Unable to load video</p>
+                </div>
+            `;
+        }
+    }
+
+    /**
+     * Close exercise demonstration modal
+     */
+    closeExerciseDemonstration() {
+        const modal = document.getElementById('exercise-demonstration-modal');
+        if (modal) {
+            modal.classList.remove('show');
+        }
+        this.demonstrationExercise = null;
+    }
+
+    /**
+     * Handle edit exercise from demonstration modal
+     */
+    handleEditExerciseFromDemo(e) {
+        if (this.demonstrationExercise) {
+            this.closeExerciseDemonstration();
+            
+            const { exercise, day, exerciseIndex } = this.demonstrationExercise;
+            this.selectedDay = day;
+            this.editingExerciseIndex = parseInt(exerciseIndex);
+            this.showEditExerciseModal(exercise);
+        }
+    }
+
+
+    /**
+     * Handle drag start
+     */
+    handleDragStart(e) {
+        const exerciseItem = e.target.closest('.exercise-item');
+        if (!exerciseItem) return;
+
+        exerciseItem.classList.add('dragging');
+        
+        // Store drag data
+        this.dragData = {
+            element: exerciseItem,
+            sourceDay: exerciseItem.closest('.day-column').getAttribute('data-day'),
+            sourceIndex: parseInt(exerciseItem.getAttribute('data-exercise-index'))
+        };
+        
+        e.dataTransfer.effectAllowed = 'move';
+    }
+
+    /**
+     * Handle drag over
+     */
+    handleDragOver(e) {
+        const dayColumn = e.target.closest('.day-column');
+        if (!dayColumn || !this.dragData) return;
+
+        // Add visual feedback
+        dayColumn.classList.add('drag-over');
+        
+        // Find the best insertion point
+        const exerciseCards = dayColumn.querySelector('.exercise-cards');
+        const exerciseItems = Array.from(exerciseCards.querySelectorAll('.exercise-item:not(.dragging)'));
+        
+        let insertAfter = null;
+        for (const item of exerciseItems) {
+            const rect = item.getBoundingClientRect();
+            const midY = rect.top + rect.height / 2;
+            
+            if (e.clientY < midY) {
+                break;
+            }
+            insertAfter = item;
+        }
+        
+        // Remove existing drop zones
+        dayColumn.querySelectorAll('.exercise-drop-zone').forEach(zone => zone.remove());
+        
+        // Add drop zone indicator
+        const dropZone = document.createElement('div');
+        dropZone.className = 'exercise-drop-zone active';
+        
+        if (insertAfter) {
+            insertAfter.insertAdjacentElement('afterend', dropZone);
+        } else {
+            exerciseCards.insertAdjacentElement('afterbegin', dropZone);
+        }
+    }
+
+    /**
+     * Handle drop
+     */
+    handleDrop(e) {
+        if (!this.dragData) return;
+
+        const dayColumn = e.target.closest('.day-column');
+        if (!dayColumn) return;
+
+        const targetDay = dayColumn.getAttribute('data-day');
+        const exerciseCards = dayColumn.querySelector('.exercise-cards');
+        const exerciseItems = Array.from(exerciseCards.querySelectorAll('.exercise-item:not(.dragging)'));
+        
+        // Calculate target index
+        let targetIndex = 0;
+        for (const item of exerciseItems) {
+            const rect = item.getBoundingClientRect();
+            const midY = rect.top + rect.height / 2;
+            
+            if (e.clientY < midY) {
+                break;
+            }
+            targetIndex++;
+        }
+
+        // Perform the move if it's a valid operation
+        const { sourceDay, sourceIndex } = this.dragData;
+        
+        if (sourceDay !== targetDay || sourceIndex !== targetIndex) {
+            // Adjust target index if moving within the same day
+            if (sourceDay === targetDay && sourceIndex < targetIndex) {
+                targetIndex--;
+            }
+            
+            const result = this.workoutDataManager.moveExercise(sourceDay, sourceIndex, targetDay, targetIndex);
+            
+            if (result.success) {
+                this.showSuccess('Exercise moved successfully');
+            } else {
+                this.showError(`Failed to move exercise: ${result.error}`);
+            }
+        }
+        
+        this.handleDragEnd(e);
+    }
+
+    /**
+     * Handle drag end
+     */
+    handleDragEnd(e) {
+        // Clean up drag state
+        document.querySelectorAll('.exercise-item.dragging').forEach(item => {
+            item.classList.remove('dragging');
+        });
+        
+        document.querySelectorAll('.day-column.drag-over').forEach(column => {
+            column.classList.remove('drag-over');
+        });
+        
+        document.querySelectorAll('.exercise-drop-zone').forEach(zone => {
+            zone.remove();
+        });
+        
+        this.dragData = null;
     }
 
     /**

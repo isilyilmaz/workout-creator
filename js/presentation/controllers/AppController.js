@@ -532,35 +532,6 @@ export class AppController {
     }
 
     /**
-     * Handle workout file loading
-     */
-    handleWorkoutFileLoad(e) {
-        console.log('File input changed, files:', e.target.files);
-        const file = e.target.files[0];
-        if (!file) {
-            console.log('No file selected');
-            return;
-        }
-
-        console.log('File selected:', file.name, file.type, file.size);
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                console.log('File content loaded, parsing JSON...');
-                const workoutData = JSON.parse(e.target.result);
-                console.log('JSON parsed successfully:', workoutData);
-                this.loadWorkoutData(workoutData);
-                this.showSuccess(`Workout "${workoutData.name}" loaded successfully!`);
-            } catch (error) {
-                console.error('Error loading workout:', error);
-                this.showError('Invalid workout file format');
-            }
-        };
-        reader.readAsText(file);
-    }
-
-
-    /**
      * Handle day selection
      */
     handleDaySelection(e) {
@@ -786,17 +757,6 @@ export class AppController {
         document.getElementById('calorie-estimate').textContent = `${calories} kcal`;
         
         return calories;
-    }
-
-    /**
-     * Populate all days with current workout data
-     */
-    populateAllDays() {
-        console.log('PopulateAllDays called with data:', this.workoutData.days);
-        Object.keys(this.workoutData.days).forEach(day => {
-            console.log(`Processing day: ${day}`);
-            this.renderDayExercises(day);
-        });
     }
 
     /**
@@ -1061,25 +1021,6 @@ export class AppController {
             confirmBtn.textContent = 'Add Exercise';
             confirmBtn.setAttribute('data-action', 'confirm-add-exercise');
         }
-    }
-
-    /**
-     * Load workout data and populate interface
-     */
-    loadWorkoutData(data) {
-        console.log('Loading workout data:', data);
-        this.workoutData = { ...data };
-        
-        // Update workout name input
-        const nameInput = document.getElementById('workout-name-input');
-        if (nameInput) {
-            nameInput.value = this.workoutData.name;
-            console.log('Updated workout name to:', this.workoutData.name);
-        }
-
-        // Populate all day columns with exercise data
-        console.log('Calling populateAllDays()');
-        this.populateAllDays();
     }
 
     /**

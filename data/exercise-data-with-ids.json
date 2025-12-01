@@ -1,0 +1,800 @@
+{
+  "exercises": [
+    {
+      "name": "Bench Press",
+      "video": "hWbUlkb5Ms4",
+      "targetMuscles": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 10
+      },
+      "difficultyLevel": 7,
+      "id": "exercise_1"
+    },
+    {
+      "name": "Overhead Press",
+      "video": "zoN5EH50Dro",
+      "targetMuscles": [
+        "shoulders",
+        "triceps",
+        "core"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 6,
+      "id": "exercise_2"
+    },
+    {
+      "name": "Barbell Row",
+      "video": "phVtqawIgbk",
+      "targetMuscles": [
+        "back",
+        "biceps",
+        "rear_delts"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 9
+      },
+      "difficultyLevel": 6,
+      "id": "exercise_3"
+    },
+    {
+      "name": "Barbell Curl",
+      "video": "54x2WF1_Suc",
+      "targetMuscles": [
+        "biceps",
+        "forearms"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_4"
+    },
+    {
+      "name": "Squat",
+      "video": "iKCJCydYYrE",
+      "targetMuscles": [
+        "quadriceps",
+        "glutes",
+        "core"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 8,
+        "max": 12
+      },
+      "difficultyLevel": 8,
+      "id": "exercise_5"
+    },
+    {
+      "name": "Romanian Deadlift",
+      "video": "Wou9zVQrAfs",
+      "targetMuscles": [
+        "hamstrings",
+        "glutes",
+        "back"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 7,
+        "max": 11
+      },
+      "difficultyLevel": 7,
+      "id": "exercise_6"
+    },
+    {
+      "name": "Deadlifts",
+      "video": "ytGaGIn3SjE",
+      "targetMuscles": [
+        "back",
+        "hamstrings",
+        "glutes",
+        "core"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 8,
+        "max": 12
+      },
+      "difficultyLevel": 9,
+      "id": "exercise_7"
+    },
+    {
+      "name": "Close Grip Bench Press",
+      "video": "VXvVa_2xWQE",
+      "targetMuscles": [
+        "triceps",
+        "chest"
+      ],
+      "equipment": "barbell",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 6,
+      "id": "exercise_8"
+    },
+    {
+      "name": "Incline Dumbbell Press",
+      "video": "8fXfwG4ftaQ",
+      "targetMuscles": [
+        "chest",
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 5,
+      "id": "exercise_9"
+    },
+    {
+      "name": "Dumbbell Bench Press",
+      "video": "VmB1G1K7v94",
+      "targetMuscles": [
+        "chest",
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 5,
+      "id": "exercise_10"
+    },
+    {
+      "name": "Dumbbell Flyes",
+      "video": "eozdVDA78K0",
+      "targetMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_11"
+    },
+    {
+      "name": "Lateral Raise",
+      "video": "Kl3LEzQ5Zqs",
+      "targetMuscles": [
+        "shoulders"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 3,
+        "max": 6
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_12"
+    },
+    {
+      "name": "Shoulder Press",
+      "video": "qEwKCR5JCog",
+      "targetMuscles": [
+        "shoulders",
+        "triceps"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_13"
+    },
+    {
+      "name": "Dumbbell Curl",
+      "video": "MKWBV29S6c0",
+      "targetMuscles": [
+        "biceps",
+        "forearms"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_14"
+    },
+    {
+      "name": "Hammer Curl",
+      "video": "zC3nLlEvin4",
+      "targetMuscles": [
+        "biceps",
+        "forearms"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_15"
+    },
+    {
+      "name": "Tricep Extension",
+      "video": "YbX7Wd8jQ-Q",
+      "targetMuscles": [
+        "triceps"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 3,
+        "max": 6
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_16"
+    },
+    {
+      "name": "Dumbbell Rows",
+      "video": "roCP6wCXPqo",
+      "targetMuscles": [
+        "back",
+        "biceps",
+        "rear_delts"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_17"
+    },
+    {
+      "name": "Goblet Squat",
+      "video": "MeIiIdhvXT4",
+      "targetMuscles": [
+        "quadriceps",
+        "glutes",
+        "core"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 10
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_18"
+    },
+    {
+      "name": "Lunges",
+      "video": "wrwwXE_x-pQ",
+      "targetMuscles": [
+        "quadriceps",
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": "dumbbell",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 10
+      },
+      "difficultyLevel": 5,
+      "id": "exercise_19"
+    },
+    {
+      "name": "Cable Cross",
+      "video": "y4RJDSOBEl8",
+      "targetMuscles": [
+        "chest",
+        "shoulders"
+      ],
+      "equipment": "cable",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_20"
+    },
+    {
+      "name": "Triceps Pushdown",
+      "video": "1FjkhpZsaxc",
+      "targetMuscles": [
+        "triceps"
+      ],
+      "equipment": "cable",
+      "caloriesPerMinute": {
+        "min": 3,
+        "max": 6
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_21"
+    },
+    {
+      "name": "Lat Pulldown",
+      "video": "5s6KGLTMgoI",
+      "targetMuscles": [
+        "back",
+        "biceps"
+      ],
+      "equipment": "cable",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_22"
+    },
+    {
+      "name": "Cable Row",
+      "video": "qD1WZ5pSuvk",
+      "targetMuscles": [
+        "back",
+        "biceps",
+        "rear_delts"
+      ],
+      "equipment": "cable",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_23"
+    },
+    {
+      "name": "Leg Press",
+      "video": "EotSw18oR9w",
+      "targetMuscles": [
+        "quadriceps",
+        "glutes"
+      ],
+      "equipment": "machine",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 10
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_24"
+    },
+    {
+      "name": "Leg Curl",
+      "video": "_lgE0gPvbik",
+      "targetMuscles": [
+        "hamstrings"
+      ],
+      "equipment": "machine",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_25"
+    },
+    {
+      "name": "Calf Raise",
+      "video": "zNcD6cq1jnM",
+      "targetMuscles": [
+        "calves"
+      ],
+      "equipment": "machine",
+      "caloriesPerMinute": {
+        "min": 3,
+        "max": 5
+      },
+      "difficultyLevel": 2,
+      "id": "exercise_26"
+    },
+    {
+      "name": "Chest Press Machine",
+      "video": "hWbUlkb5Ms4",
+      "targetMuscles": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": "machine",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_27"
+    },
+    {
+      "name": "Pull-Up",
+      "video": "eDP_OOhMTZ4",
+      "targetMuscles": [
+        "back",
+        "biceps"
+      ],
+      "equipment": "bodyweight",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 10
+      },
+      "difficultyLevel": 8,
+      "id": "exercise_28"
+    },
+    {
+      "name": "Push-ups",
+      "video": "dQHqviplA2E",
+      "targetMuscles": [
+        "chest",
+        "triceps",
+        "shoulders"
+      ],
+      "equipment": "bodyweight",
+      "caloriesPerMinute": {
+        "min": 7,
+        "max": 11
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_29"
+    },
+    {
+      "name": "Tricep Dips",
+      "video": "JhXYSWOlTko",
+      "targetMuscles": [
+        "triceps",
+        "chest"
+      ],
+      "equipment": "bodyweight",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 6,
+      "id": "exercise_30"
+    },
+    {
+      "name": "Diamond Push-ups",
+      "video": "J0DnG1_S92I",
+      "targetMuscles": [
+        "triceps",
+        "chest"
+      ],
+      "equipment": "bodyweight",
+      "caloriesPerMinute": {
+        "min": 6,
+        "max": 10
+      },
+      "difficultyLevel": 7,
+      "id": "exercise_31"
+    },
+    {
+      "name": "Hip Thrusts",
+      "video": "sWjTnBmCHTY",
+      "targetMuscles": [
+        "glutes",
+        "hamstrings"
+      ],
+      "equipment": "bodyweight",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_32"
+    },
+    {
+      "name": "Plank",
+      "video": "ASdvN_XEl_c",
+      "targetMuscles": [
+        "core",
+        "shoulders"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 3,
+        "max": 5
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_33"
+    },
+    {
+      "name": "Burpees",
+      "video": "auBLPXO8Fww",
+      "targetMuscles": [
+        "full_body",
+        "cardio"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 10,
+        "max": 15
+      },
+      "difficultyLevel": 9,
+      "id": "exercise_34"
+    },
+    {
+      "name": "Mountain Climbers",
+      "video": "kLh-uczlPLg",
+      "targetMuscles": [
+        "core",
+        "cardio"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 8,
+        "max": 12
+      },
+      "difficultyLevel": 6,
+      "id": "exercise_35"
+    },
+    {
+      "name": "Jumping Jacks",
+      "video": "dmYwZH_BNd0",
+      "targetMuscles": [
+        "cardio",
+        "quadriceps",
+        "hamstrings",
+        "glutes",
+        "calves"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 7,
+        "max": 11
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_36"
+    },
+    {
+      "name": "Sit-ups",
+      "video": "jDwoBqPH0jk",
+      "targetMuscles": [
+        "core"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 2,
+      "id": "exercise_37"
+    },
+    {
+      "name": "Crunch",
+      "video": "MKmrqcoCZ-M",
+      "targetMuscles": [
+        "core"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 2,
+      "id": "exercise_38"
+    },
+    {
+      "name": "Bicycle Crunch",
+      "video": "AZFxNdJ2XQo",
+      "targetMuscles": [
+        "core",
+        "obliques"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 5,
+        "max": 8
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_39"
+    },
+    {
+      "name": "Russian Twists",
+      "video": "wkD8rjkodUI",
+      "targetMuscles": [
+        "core",
+        "obliques"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 3,
+      "id": "exercise_40"
+    },
+    {
+      "name": "Superman",
+      "video": "z6PJMT2y8GQ",
+      "targetMuscles": [
+        "back",
+        "glutes"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 3,
+        "max": 5
+      },
+      "difficultyLevel": 2,
+      "id": "exercise_41"
+    },
+    {
+      "name": "Wall Sit",
+      "video": "JjMrX1C3-fE",
+      "targetMuscles": [
+        "quadriceps",
+        "glutes"
+      ],
+      "equipment": "noEquipment",
+      "caloriesPerMinute": {
+        "min": 4,
+        "max": 7
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_42"
+    },
+    {
+      "name": "Running",
+      "video": "kVnyY17VS9Y",
+      "targetMuscles": [
+        "cardio",
+        "quadriceps",
+        "hamstrings",
+        "glutes",
+        "calves"
+      ],
+      "equipment": "cardio",
+      "caloriesPerMinute": {
+        "min": 10,
+        "max": 16
+      },
+      "difficultyLevel": 5,
+      "id": "exercise_43"
+    },
+    {
+      "name": "Cycling",
+      "video": "8A7woRoVwyM",
+      "targetMuscles": [
+        "cardio",
+        "quadriceps",
+        "calves"
+      ],
+      "equipment": "cardio",
+      "caloriesPerMinute": {
+        "min": 8,
+        "max": 14
+      },
+      "difficultyLevel": 4,
+      "id": "exercise_44"
+    },
+    {
+      "name": "Rowing",
+      "video": "zQ82RYBANP4",
+      "targetMuscles": [
+        "cardio",
+        "back",
+        "quadriceps",
+        "hamstrings",
+        "glutes",
+        "calves",
+        "core"
+      ],
+      "equipment": "cardio",
+      "caloriesPerMinute": {
+        "min": 11,
+        "max": 17
+      },
+      "difficultyLevel": 6,
+      "id": "exercise_45"
+    },
+    {
+      "name": "Swimming",
+      "video": "rJpFVvho0o4",
+      "targetMuscles": [
+        "cardio",
+        "full_body"
+      ],
+      "equipment": "cardio",
+      "caloriesPerMinute": {
+        "min": 11,
+        "max": 18
+      },
+      "difficultyLevel": 7,
+      "id": "exercise_46"
+    },
+    {
+      "name": "Jump Rope",
+      "video": "DTFH3FN3M5E",
+      "targetMuscles": [
+        "cardio",
+        "calves",
+        "shoulders"
+      ],
+      "equipment": "cardio",
+      "caloriesPerMinute": {
+        "min": 12,
+        "max": 18
+      },
+      "difficultyLevel": 5,
+      "id": "exercise_47"
+    },
+    {
+      "name": "Triceps Stretch",
+      "video": "WrZIJEWKnzk",
+      "targetMuscles": [
+        "triceps"
+      ],
+      "equipment": "stretching",
+      "caloriesPerMinute": {
+        "min": 1,
+        "max": 3
+      },
+      "difficultyLevel": 1,
+      "id": "exercise_48"
+    },
+    {
+      "name": "Hamstring Stretch",
+      "video": "jrTxJj1LfuE",
+      "targetMuscles": [
+        "hamstrings"
+      ],
+      "equipment": "stretching",
+      "caloriesPerMinute": {
+        "min": 1,
+        "max": 3
+      },
+      "difficultyLevel": 1,
+      "id": "exercise_49"
+    },
+    {
+      "name": "Quad Stretch",
+      "video": "jrTxJj1LfuE",
+      "targetMuscles": [
+        "quadriceps"
+      ],
+      "equipment": "stretching",
+      "caloriesPerMinute": {
+        "min": 1,
+        "max": 3
+      },
+      "difficultyLevel": 1,
+      "id": "exercise_50"
+    },
+    {
+      "name": "Shoulder Stretch",
+      "video": "WrZIJEWKnzk",
+      "targetMuscles": [
+        "shoulders"
+      ],
+      "equipment": "stretching",
+      "caloriesPerMinute": {
+        "min": 1,
+        "max": 3
+      },
+      "difficultyLevel": 1,
+      "id": "exercise_51"
+    },
+    {
+      "name": "Chest Stretch",
+      "video": "WrZIJEWKnzk",
+      "targetMuscles": [
+        "chest"
+      ],
+      "equipment": "stretching",
+      "caloriesPerMinute": {
+        "min": 1,
+        "max": 3
+      },
+      "difficultyLevel": 1,
+      "id": "exercise_52"
+    }
+  ]
+}

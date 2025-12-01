@@ -1,0 +1,224 @@
+/* Exercise Item Component Styles */
+.exercise-item {
+    background: #3a3a3a;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.exercise-item:hover {
+    background: #444444;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.exercise-item:active {
+    transform: translateY(0);
+}
+
+.exercise-item.dragging {
+    opacity: 0.8;
+    transform: rotate(2deg);
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.exercise-item.drag-over {
+    border-color: #007acc;
+    background: #2a4a5a;
+}
+
+/* Drag Handle */
+.exercise-drag-handle {
+    color: #888;
+    cursor: grab;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.exercise-drag-handle:hover {
+    color: #bbb;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.exercise-drag-handle:active {
+    cursor: grabbing;
+}
+
+/* Exercise Content */
+.exercise-content {
+    flex: 1;
+    min-width: 0;
+    pointer-events: none; /* Allow click to bubble to parent */
+}
+
+.exercise-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.exercise-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.sets-reps {
+    font-size: 14px;
+    color: #cccccc;
+    font-weight: 500;
+}
+
+.intensity {
+    font-size: 14px;
+    color: #007acc;
+    font-weight: 600;
+}
+
+.rest-type {
+    font-size: 14px;
+    color: #ff9500;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Rest Period Styling */
+.exercise-item[data-exercise-type="rest"] {
+    background: #4a3a2a;
+    border-left: 4px solid #ff9500;
+}
+
+.exercise-item[data-exercise-type="rest"]:hover {
+    background: #5a4a3a;
+}
+
+.exercise-item[data-exercise-type="rest"] .exercise-name {
+    color: #ffcc99;
+}
+
+/* Action Buttons */
+.exercise-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.exercise-edit-btn,
+.exercise-delete-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-edit-btn:hover {
+    background: rgba(0, 122, 204, 0.2);
+    color: #007acc;
+}
+
+.exercise-delete-btn:hover {
+    background: rgba(255, 59, 48, 0.2);
+    color: #ff3b30;
+}
+
+.exercise-edit-btn:active,
+.exercise-delete-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .exercise-item {
+        padding: 12px;
+        gap: 8px;
+    }
+    
+    .exercise-name {
+        font-size: 15px;
+    }
+    
+    .sets-reps,
+    .intensity,
+    .rest-type {
+        font-size: 13px;
+    }
+    
+    .exercise-edit-btn,
+    .exercise-delete-btn {
+        padding: 6px;
+    }
+    
+    .exercise-drag-handle svg {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Animation for new items */
+.exercise-item.newly-added {
+    animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Drag and Drop Feedback */
+.day-column.drag-over {
+    background: rgba(0, 122, 204, 0.1);
+    border: 2px dashed #007acc;
+    border-radius: 8px;
+}
+
+.exercise-drop-zone {
+    height: 4px;
+    background: #007acc;
+    border-radius: 2px;
+    margin: 4px 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.exercise-drop-zone.active {
+    opacity: 1;
+}
+
+/* Focus states for accessibility */
+.exercise-item:focus-within {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
+.exercise-edit-btn:focus,
+.exercise-delete-btn:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}

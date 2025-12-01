@@ -18,6 +18,7 @@ export class ContentLoader {
             // Helper content files
             'create-your-workout.html': 'helper-content/create-your-workout.html',
             'workout-summary.html': 'helper-content/workout-summary.html',
+            'exercise-demonstration.html': 'helper-content/exercise-demonstration.html',
             
             // Static content files
             'hero.html': 'static-content/hero.html',

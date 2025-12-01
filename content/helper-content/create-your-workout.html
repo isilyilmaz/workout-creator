@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="./css/create-your-workout.css">
 <div class="create-workout-container">
     <!-- Workout Header -->
     <div class="workout-header">
@@ -12,9 +11,8 @@
             >
         </div>
         <div class="workout-actions">
-            <input type="file" id="workout-file-input" accept=".json" style="display: none;">
-            <button class="load-workout-btn" data-action="load-workout">Load Workout</button>
-            <button class="save-workout-btn" data-action="save-workout">Save Workout</button>
+            <button class="load-workout-btn" data-action="load-workout">Load from sample-workout-with-ids.json</button>
+            <button class="save-workout-btn" data-action="save-workout">Save to sample-workout-with-ids.json</button>
         </div>
     </div>
 
@@ -121,4 +119,7 @@
             </div>
         </div>
     </div>
+    
+    <!-- Exercise Demonstration Modal -->
+    {{include-template:exercise-demonstration.html}}
 </div>

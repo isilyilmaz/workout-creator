@@ -4,10 +4,13 @@
  * Provides a unified interface for workout data operations
  */
 
+import { ExerciseDataService } from './services/ExerciseDataService.js';
+
 export class WorkoutDataManager {
     constructor() {
         this.workoutData = this.createEmptyWorkout();
         this.observers = new Set();
+        this.exerciseDataService = new ExerciseDataService();
         this.validationRules = {
             name: { required: true, minLength: 1 },
             days: { required: true, type: 'object' },
@@ -63,14 +66,14 @@ export class WorkoutDataManager {
         try {
             console.log('WorkoutDataManager: Loading workout data', data);
             
-            // Validate incoming data
-            const validationResult = this.validateWorkoutData(data);
+            // First normalize the data to handle different formats
+            const processedData = this.normalizeWorkoutData(data);
+            
+            // Then validate the normalized data
+            const validationResult = this.validateWorkoutData(processedData);
             if (!validationResult.isValid) {
                 throw new Error(`Invalid workout data: ${validationResult.errors.join(', ')}`);
             }
-
-            // Ensure all required day structures exist
-            const processedData = this.normalizeWorkoutData(data);
             
             this.workoutData = { ...processedData };
             this.workoutData.updatedAt = new Date().toISOString();
@@ -185,6 +188,28 @@ export class WorkoutDataManager {
      */
     getExercisesForDay(day) {
         return [...(this.workoutData.days[day] || [])];
+    }
+
+    /**
+     * Get enhanced exercises for a specific day with database data
+     */
+    async getEnhancedExercisesForDay(day) {
+        const exercises = this.getExercisesForDay(day);
+        const enhancedExercises = [];
+
+        for (const exercise of exercises) {
+            const enhanced = await this.exerciseDataService.getExerciseData(exercise);
+            enhancedExercises.push(enhanced);
+        }
+
+        return enhancedExercises;
+    }
+
+    /**
+     * Get exercise database service
+     */
+    getExerciseDataService() {
+        return this.exerciseDataService;
     }
 
     /**
@@ -346,13 +371,15 @@ export class WorkoutDataManager {
             errors.push('Workout name is required and must be a non-empty string');
         }
 
-        if (!data.days || typeof data.days !== 'object') {
-            errors.push('Workout days must be an object');
+        // Check for workout days data (accept both "days" and "schedule" properties)
+        const workoutDays = data.days || data.schedule;
+        if (!workoutDays || typeof workoutDays !== 'object') {
+            errors.push('Workout days must be an object (as "days" or "schedule" property)');
         } else {
             // Validate days structure
             const requiredDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
             requiredDays.forEach(day => {
-                if (data.days[day] && !Array.isArray(data.days[day])) {
+                if (workoutDays[day] && !Array.isArray(workoutDays[day])) {
                     errors.push(`Day ${day} must be an array`);
                 }
             });
@@ -370,6 +397,13 @@ export class WorkoutDataManager {
     normalizeWorkoutData(data) {
         const normalized = { ...data };
 
+        // Handle different JSON formats: convert "schedule" to "days" if needed
+        if (normalized.schedule && !normalized.days) {
+            console.log('WorkoutDataManager: Converting "schedule" property to "days"');
+            normalized.days = normalized.schedule;
+            delete normalized.schedule;
+        }
+
         // Ensure all days exist
         const requiredDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
         if (!normalized.days) {
@@ -379,6 +413,42 @@ export class WorkoutDataManager {
         requiredDays.forEach(day => {
             if (!normalized.days[day]) {
                 normalized.days[day] = [];
+            } else {
+                // Normalize exercise data within each day
+                normalized.days[day] = normalized.days[day].map(exercise => {
+                    const normalizedExercise = { ...exercise };
+                    
+                    // Handle different property names for reps
+                    if (normalizedExercise.repsCount && !normalizedExercise.reps) {
+                        normalizedExercise.reps = normalizedExercise.repsCount;
+                    }
+                    
+                    // Handle different property names for weight/intensity
+                    if (normalizedExercise.weightValue && !normalizedExercise.weight) {
+                        normalizedExercise.weight = normalizedExercise.weightValue;
+                    }
+                    
+                    // Map weight percentage to intensity for display
+                    if (normalizedExercise.weight && !normalizedExercise.intensity) {
+                        // Extract percentage from weight field like "80%"
+                        const weightMatch = String(normalizedExercise.weight).match(/(\d+)%?/);
+                        if (weightMatch) {
+                            normalizedExercise.intensity = parseInt(weightMatch[1]);
+                        }
+                    }
+                    
+                    // Ensure type is set
+                    if (!normalizedExercise.type) {
+                        normalizedExercise.type = 'exercise';
+                    }
+                    
+                    // Preserve exerciseId for database lookup
+                    if (exercise.exerciseId) {
+                        normalizedExercise.exerciseId = exercise.exerciseId;
+                    }
+                    
+                    return normalizedExercise;
+                });
             }
         });
 

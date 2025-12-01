@@ -1,0 +1,53 @@
+<div class="exercise-item" 
+     data-exercise-index="{{index}}" 
+     data-exercise-name="{{exerciseName}}"
+     data-exercise-type="{{exerciseType}}"
+     draggable="true">
+    
+    <!-- Drag Handle -->
+    <div class="exercise-drag-handle" title="Drag to reorder">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+            <circle cx="3" cy="3" r="1"/>
+            <circle cx="9" cy="3" r="1"/>
+            <circle cx="3" cy="6" r="1"/>
+            <circle cx="9" cy="6" r="1"/>
+            <circle cx="3" cy="9" r="1"/>
+            <circle cx="9" cy="9" r="1"/>
+        </svg>
+    </div>
+    
+    <!-- Exercise Content -->
+    <div class="exercise-content" data-action="show-exercise-demo">
+        <div class="exercise-name">{{exerciseName}}</div>
+        <div class="exercise-details">
+            {{#if isExercise}}
+                <div class="sets-reps">{{sets}} sets × {{repsDisplay}}</div>
+                <div class="intensity">{{intensity}}%</div>
+            {{else}}
+                <div class="sets-reps">{{duration}} minutes</div>
+                <div class="rest-type">{{restType}}</div>
+            {{/if}}
+        </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="exercise-actions">
+        {{#if isExercise}}
+            <button class="exercise-edit-btn" 
+                    data-action="edit-exercise" 
+                    title="Edit exercise">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                    <path d="M11.7 3.3L10.7 2.3c-.4-.4-1-.4-1.4 0L2 9.6V12h2.4l7.3-7.3c.4-.4.4-1 0-1.4zM4.6 11H3V9.4l6-6 1.6 1.6-6 6z"/>
+                </svg>
+            </button>
+        {{/if}}
+        
+        <button class="exercise-delete-btn" 
+                data-action="delete-exercise" 
+                title="Delete {{#if isExercise}}exercise{{else}}rest period{{/if}}">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                <path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4 12.6 14 14 12.6 8.4 7z"/>
+            </svg>
+        </button>
+    </div>
+</div>
