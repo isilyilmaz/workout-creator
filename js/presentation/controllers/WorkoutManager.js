@@ -56,6 +56,10 @@ export class WorkoutManager {
 
         this.setupEventListeners();
         await this.populateExerciseDropdown();
+        
+        // Make closeVideoModal globally accessible
+        window.closeVideoModal = () => this.closeVideoModal();
+        
         this.isInitialized = true;
     }
 
@@ -904,10 +908,10 @@ export class WorkoutManager {
      */
     async waitForModalElements(retryCount = 0, maxRetries = 10) {
         const requiredElements = [
-            'demo-exercise-title',
-            'demo-video-container',
-            'video-placeholder',
-            'exercise-demonstration-modal'
+            'exercise-demonstration-modal',
+            'videoTitle',
+            'videoContainer',
+            'video-placeholder'
         ];
 
         // Check if all required elements exist
@@ -958,7 +962,7 @@ export class WorkoutManager {
             }
             
             // Update modal content - now safely access DOM elements
-            const titleElement = document.getElementById('demo-exercise-title');
+            const titleElement = document.getElementById('videoTitle');
             if (titleElement) {
                 titleElement.textContent = `${enhancedExercise.name} - Exercise Demonstration`;
             }
@@ -980,7 +984,7 @@ export class WorkoutManager {
      * Load exercise demonstration video
      */
     async loadExerciseVideo(exerciseName, exerciseData) {
-        const videoContainer = document.getElementById('demo-video-container');
+        const videoContainer = document.getElementById('videoContainer');
         const placeholder = document.getElementById('video-placeholder');
         
         // Check if required DOM elements exist
@@ -1059,6 +1063,13 @@ export class WorkoutManager {
             modal.classList.remove('show');
         }
         this.demonstrationExercise = null;
+    }
+
+    /**
+     * Close video modal (called from onclick)
+     */
+    closeVideoModal() {
+        this.closeExerciseDemonstration();
     }
 
     /**

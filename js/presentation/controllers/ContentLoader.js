@@ -15,10 +15,10 @@ export class ContentLoader {
             'profile-information.html': 'main-content/profile-information.html',
             'workout-creator.html': 'main-content/workout-creator.html',
             
-            // Helper content files
-            'create-your-workout.html': 'helper-content/create-your-workout.html',
-            'workout-summary.html': 'helper-content/workout-summary.html',
-            'exercise-demonstration.html': 'helper-content/exercise-demonstration.html',
+            // Modal content files
+            'create-your-workout.html': 'modal-content/create-your-workout.html',
+            'workout-summary.html': 'modal-content/workout-summary.html',
+            'exercise-demonstration.html': 'modal-content/exercise-demonstration.html',
             
             // Static content files
             'hero.html': 'static-content/hero.html',
